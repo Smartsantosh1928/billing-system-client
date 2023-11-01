@@ -1,7 +1,19 @@
-import { Button } from "@material-tailwind/react";
+import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
 function App() {
-  return ;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/signup" element={<Register />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
  
 }
 
