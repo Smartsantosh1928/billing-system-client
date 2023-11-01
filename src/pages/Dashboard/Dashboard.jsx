@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, CardHeader, Typography } from '@material-tailwind/react'
+import { Card, Typography } from '@material-tailwind/react'
 import { HomeIcon, XMarkIcon, Cog8ToothIcon, UserCircleIcon, DocumentIcon, DocumentPlusIcon, DocumentDuplicateIcon } from "@heroicons/react/24/solid"
 import { BiCart, BiCartAlt, BiCartAdd, BiUser, BiUserPlus, BiUserCircle } from "react-icons/bi"
 
@@ -12,6 +12,21 @@ function Dashboard() {
   const handleCollapse = () => {
     setCollapse(!collapse)
   }
+
+  useEffect(() => {
+    fetch("http://localhost:3000/auth/verifyUser",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+      }
+    }).then(res => res.json())
+    .then(data => {
+      if(!data.success){
+        navigate("/auth/login")
+      }
+    }).catch(err => navigate("/auth/login"))
+  },[])
 
   return (
     <Card className="w-auto h-screen fixed flex justify-start items-center">
