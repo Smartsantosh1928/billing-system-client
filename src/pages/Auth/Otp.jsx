@@ -33,7 +33,7 @@ function Otp({open,handleOpen,email}) {
             title: 'Success!',
             text: data.msg,
             icon: 'success',
-          }).then(() => navigate("/"))
+          }).then(() => navigate("/dashboard/*"))
         }
       })
       .catch(error => {

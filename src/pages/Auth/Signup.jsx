@@ -11,6 +11,8 @@ import { Link,useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Otp from "./Otp";
+import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
+import Loading from "react-loading";
    
 export function Signup() {
   const navigate = useNavigate()
@@ -19,7 +21,13 @@ export function Signup() {
   const [ validated, setValidated] = useState(false)
   const [ errors, serErrors ] = useState(["","",""])
   const [ open, setOpen ] = useState(false)
-  
+  const [pass,showPass] = useState(false)
+  const [loading,setLoading] = useState(false)
+
+  const toggle=()=>{
+    showPass(!pass)
+  }
+
   const handleChange =(e)=>{
     const {name,value}=e.target
     if(name=="remind-me"){
@@ -85,6 +93,7 @@ export function Signup() {
     } 
 
   const handleSubmit= (e)=>{
+    setLoading(!loading)
     console.log(details);
     e.preventDefault();
     fetch("http://localhost:3000/auth/register",{
@@ -95,6 +104,7 @@ export function Signup() {
       body: JSON.stringify({...details})
     }).then(res => res.json())
     .then(data => {
+    setLoading(false)
       const inputs = document.querySelectorAll("input")
       inputs.forEach(input => input.value = "")
       if(data.success){
@@ -103,6 +113,7 @@ export function Signup() {
         sessionStorage.setItem("RefreshToken",data.refreshToken)
         handleOpen()
       }else{
+        setLoading(false)
         setdetails({name:"",email:'',password:''})
         Swal.fire({
           title: 'Error!',
@@ -111,6 +122,7 @@ export function Signup() {
         })
       }
     }).catch(err => {
+      setLoading(false)
       console.log(err)
       Swal.fire({
         title: 'Error!',
@@ -138,13 +150,14 @@ export function Signup() {
         {errors[0]!="" && <Typography variant="small" color="red">{errors[0]}</Typography>}
         <Input label="Email" type="email" name="email" size="lg" onChange={handleChange} required />
         {errors[1]!="" && <Typography variant="small" color="red">{errors[1]}</Typography>}
-        <Input label="Password" type="password" name="password" size="lg" onChange={handleChange} required />
+        <Input label="Password" type={pass ? "password" : "text"} name="password" size="lg" onChange={handleChange} required />
+        <div className="absolute mt-28 ml-60 md:mt-36 md:ml-72"><button className="absolute  mt-6 md:-mt-2 md:ml-4" onClick={toggle} >{pass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</button></div>
         {errors[2]!="" && <Typography variant="small" color="red">{errors[2]}</Typography>}
       </CardBody>
-      <CardFooter className="pt-0">
-        <Button variant="gradient" fullWidth onClick={(e) => validated&&handleSubmit(e)}>
+      <CardFooter className="pt-0 flex flex-col items-center justify-center">
+        {loading ? <Loading type="spin" width="30px" color="blue"/> : <Button variant="gradient" fullWidth onClick={(e) => validated&&handleSubmit(e)}>
           Sign Up
-        </Button>
+        </Button>}
         <Typography variant="small" className="mt-6 flex justify-center">
           Already have an account?
           <Link to="/auth/login" className="text-base font-semibold hover:animate-pulse text-blue-500 ml-2" >Login</Link>

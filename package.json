@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "BillingSystem",
-=======
-  "name": "BillingSystemClient",
->>>>>>> origin/roshan
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,16 +14,13 @@
     "@material-tailwind/react": "^2.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-icons": "^4.11.0",
-    "react-pro-sidebar": "^1.1.0-alpha.1",
-    "react-router-dom": "^6.17.0"
-=======
+    "react-loading": "^2.0.3",
     "react-otp-input": "^3.1.0",
+    "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.17.0",
     "react-toastify": "^9.1.3",
     "sweetalert2": "^11.9.0"
->>>>>>> origin/roshan
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
