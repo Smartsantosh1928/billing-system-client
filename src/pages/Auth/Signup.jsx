@@ -98,9 +98,6 @@ export function Signup() {
       const inputs = document.querySelectorAll("input")
       inputs.forEach(input => input.value = "")
       if(data.success){
-        setdetails({name:"",email:'',password:''})
-        sessionStorage.setItem("AccessToken",data.accessToken)
-        sessionStorage.setItem("RefreshToken",data.refreshToken)
         handleOpen()
       }else{
         setdetails({name:"",email:'',password:''})

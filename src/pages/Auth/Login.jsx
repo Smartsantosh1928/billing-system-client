@@ -27,8 +27,25 @@ export function Login() {
     setOpen(!open)
   }
 
+  
   useEffect(() => {
-    
+    fetch("http://localhost:3000/auth/verifyUser",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+      }
+    }).then(res => {
+      if(res.status == 403){
+        getAccessToken()
+      }else{
+        return res.json()
+      }
+    })
+    .then(data => {
+      if(data.success)
+        navigate("/dashboard/home")
+    }).catch(err => navigate("/auth/login"))
   },[])
 
   const validate = () => {
@@ -95,7 +112,9 @@ export function Login() {
       if(data.success){
         sessionStorage.setItem("AccessToken",data.accessToken)
         sessionStorage.setItem("RefreshToken",data.refreshToken)
-        navigate("/")
+        localStorage.setItem("AccessToken",data.accessToken)
+        localStorage.setItem("RefreshToken",data.refreshToken)
+        navigate("/dashboard/home")
       }
       else if(data.msg=="User not verified!"){
         handleOpen()
@@ -106,6 +125,7 @@ export function Login() {
           text: data.msg,
           icon: 'error',
         })
+        setdetails({email :"",password:""})
       }
     })
     .catch(err => {

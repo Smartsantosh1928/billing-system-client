@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AllProducts() {
+export function AllProducts() {
   return (
     <div>AllProducts</div>
   )

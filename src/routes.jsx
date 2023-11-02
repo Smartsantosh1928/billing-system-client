@@ -5,6 +5,7 @@ import { Bill, AllBills, Product, AllProducts } from "@/pages/Dashboard/cashier"
 
 const routes = {
     cashier : [
+        "Dashboard",
         {
             name: 'Home',
             path: '/home',
@@ -12,7 +13,10 @@ const routes = {
             component: <Home />
         },
         [
-            "Bills",
+            {
+                name: 'Bills',
+                icon: <DocumentIcon className='w-5 h-5 text-blue-500' />,
+            },
             {
                 name: 'New Bill',
                 path: '/new-bill',
@@ -27,7 +31,10 @@ const routes = {
             },
         ],
         [
-            "Products",
+            {
+                name: "Products",
+                icon: <BiCart className='w-5 h-5 text-blue-500' />
+            },
             {
                 name: 'New Product',
                 path: '/new-product',
@@ -42,7 +49,10 @@ const routes = {
             },
         ],
         [
-            "Users",
+            {
+                name: "Users",
+                icon: <BiUserCircle className='w-5 h-5 text-blue-500' />
+            },
             {
                 name: 'New User',
                 path: '/new-user',
@@ -56,6 +66,7 @@ const routes = {
                 component: <Home />
             },
         ],
+        "General",
         {
             name: 'Profile',
             path: '/profile',
@@ -70,3 +81,5 @@ const routes = {
         }
     ]
 }
+
+export default routes

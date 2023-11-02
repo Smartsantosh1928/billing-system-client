@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AllBills() {
+export function AllBills() {
   return (
     <div>AllBills</div>
   )

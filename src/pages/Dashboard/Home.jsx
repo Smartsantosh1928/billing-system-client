@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Home() {
+export function Home() {
   return (
-    <div>Home</div>
+    <div className='ml-20 md:ml-64'>
+      Home
+    </div>
   )
 }
 
