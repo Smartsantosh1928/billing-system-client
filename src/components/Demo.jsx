@@ -12,18 +12,23 @@ export function Demo() {
         Quagga.init(
           {
             inputStream: {
-              name: 'Live',
               type: 'LiveStream',
               target: barcodeFieldRef.current,
+              constraints: {
+                width: 640,
+                height: 480,
+                facingMode: 'user', // or user
+              },
             },
             locator: {
               patchSize: 'medium',
               halfSample: true,
             },
-            numOfWorkers: 4,
+            numOfWorkers: 0,
             decoder: {
-              readers: ['ean_reader'],
+                readers: ['ean_reader'],
             },
+            locate: true,
           },
           function (err) {
             if (err) {
@@ -38,8 +43,7 @@ export function Demo() {
           const barcode = data.codeResult.code;
           barcodeFieldRef.current.value = barcode;
           console.log("Barcode detected and processed : [" + barcode + "]", data);
-          // Optionally, you can stop the scanner after a successful scan
-          // Quagga.stop();
+          Quagga.stop();
         });
 
         return () => {

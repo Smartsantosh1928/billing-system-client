@@ -5,17 +5,23 @@ import { Card, Typography } from '@material-tailwind/react'
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import routes from "../../routes"
 import { getAccessToken } from "../../utils/Utils"
+import { Layout } from "@/components"
+import { useSelector, useDispatch } from 'react-redux';
+import { handleCollapse } from "../../store/CollapseSlice"
 
 export function Dashboard() {
 
-  const [ collapse, setCollapse ] = useState(false)
+  const collapse = useSelector((state) => state.collapse.collapse);
+  const dispatch = useDispatch();
+
+  // const [ collapse, setCollapse ] = useState(false)
   const [ role, setRole ] = useState("")
   const [ userRoutes, setUserRoutes ] = useState([])
   const navigate = useNavigate()
 
-  const handleCollapse = () => {
-    setCollapse(!collapse)
-  }
+  // const handleCollapse = () => {
+  //   setCollapse(!collapse)
+  // }
 
   useEffect(() => {
     fetch("http://localhost:3000/auth/verifyUser",{
@@ -49,10 +55,10 @@ export function Dashboard() {
     <Card className="w-auto h-screen fixed flex justify-start items-center overflow-y-auto">
       <div className='flex my-5 justify-evenly items-center w-full'>
           <div className="flex justify-center gap-3 items-center">
-            <img onClick={collapse ? handleCollapse : () => {}} src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" className="w-10 h-10 cursor-pointer" />
+            <img onClick={() => dispatch(handleCollapse())} src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" className="w-10 h-10 cursor-pointer" />
             {collapse == false && <h1 className="text-2xl font-bold">Billing App</h1>}
           </div>
-        {collapse == false && <XMarkIcon onClick={handleCollapse} className='w-8 h-8 hover:text-red-500 cursor-pointer' />}
+        {collapse == false && <XMarkIcon onClick={() => dispatch(handleCollapse())} className='w-8 h-8 hover:text-red-500 cursor-pointer' />}
       </div>
       <Sidebar collapsed={collapse} toggled={true} transitionDuration={700} collapsedWidth='70px' backgroundColor='#fff'>
         <Menu 
@@ -102,17 +108,19 @@ export function Dashboard() {
         </Menu>
       </Sidebar>
     </Card>
-    <Routes>
-    {userRoutes && userRoutes.map((route, index) => {
-      if (Array.isArray(route)) {
-        return route.slice(1).map((subRoute, subIndex) => (
-          <Route key={subIndex} path={subRoute.path} element={subRoute.component} />
-        ));
-      } else {
-        return <Route key={index} path={route.path} element={route.component} />;
-      }
-    })}
-  </Routes>
+    <Layout>
+      <Routes>
+        {userRoutes && userRoutes.map((route, index) => {
+          if (Array.isArray(route)) {
+            return route.slice(1).map((subRoute, subIndex) => (
+              <Route key={subIndex} path={subRoute.path} element={subRoute.component} />
+            ));
+          } else {
+            return <Route key={index} path={route.path} element={route.component} />;
+          }
+        })}
+      </Routes>
+    </Layout>
   
   </>
   )

@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import Otp from "./Otp";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import Loading from "react-loading";
+import { getAccessToken } from "../../utils/Utils";
 
 export function Login() {
 
@@ -24,8 +25,6 @@ export function Login() {
   const [ open, setOpen ] = useState(false)
   const [pass,showPass] = useState(false)
   const [loading,setLoading] = useState(false)
-
-
 
   const navigate = useNavigate()
 
@@ -46,9 +45,9 @@ export function Login() {
       }
     }).then(res => {
       if(res.status == 403){
-        getAccessToken()
+        getAccessToken();
       }else{
-        return res.json()
+        return res.json() 
       }
     })
     .then(data => {
@@ -56,7 +55,7 @@ export function Login() {
         navigate("/dashboard/home")
     }).catch(err => navigate("/auth/login"))
   },[])
-
+ 
   const validate = () => {
     let isValid = true; // Assume the form is valid by default
   
