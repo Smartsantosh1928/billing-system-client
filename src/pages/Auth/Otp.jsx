@@ -5,15 +5,15 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-function Otp({ email }) {
+export function Otp({ email }) {
 
     const [ otp, setOtp ] = useState()
-    const token = sessionStorage.getItem("AccessToken")
+    // const token = localStorage.getItem("AccessToken")
     const navigate = useNavigate();
 
     useEffect(() => {
-      console.log(email);
-    }, [])
+      console.log(otp);
+    }, [otp])
     
     const handlesubmit = () => {
       fetch("http://localhost:3000/auth/verifyOTP", {
@@ -31,8 +31,6 @@ function Otp({ email }) {
       })
       .then(data => {
         if(data.success){
-          sessionStorage.setItem("AccessToken",data.accessToken)
-          sessionStorage.setItem("RefreshToken",data.refreshToken)
           localStorage.setItem("AccessToken",data.accessToken)
           localStorage.setItem("RefreshToken",data.refreshToken)
           Swal.fire({
@@ -58,19 +56,25 @@ function Otp({ email }) {
   return (
     <div className='bg-opacity-80 z-50 flex items-center justify-center inset-0 fixed w-screen h-auto bg-black' >
         <Card className="mx-aut0 absolute flex items-center justify-center">
-          <CardBody>
-            Enter Your OTP
+          <CardBody >
+            <div className='w-full flex justify-center items-center font-bold mb-5'>
+              Enter OTP Sent to {email}
+            </div>
           <OtpInput
             value={otp}
             onChange={setOtp}
+            onPaste={(otp) => setOtp(otp)}
+            placeholder='000000'
+            containerStyle={"p-2 flex justify-center items-center gap-2 w-96"}
+            inputStyle={"border-2 border-gray-400 rounded-md h-12 font-semibold text-4xl text-blue-200 w-16"}
             inputType='text'
             numInputs={6}
             renderSeparator={<span>-</span>}
             renderInput={(props) => <input {...props} />}
-        />
+          />
         </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" onClick={handlesubmit}  fullWidth>
+            <Button variant="gradient" color='blue' onClick={handlesubmit}  fullWidth>
               Submit
             </Button>
           </CardFooter>

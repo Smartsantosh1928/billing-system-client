@@ -36,28 +36,39 @@ export function Login() {
     showPass(!pass)
   }
 
+  const accessToken = localStorage.getItem("AccessToken");
+
   useEffect(() => {
-    fetch("http://localhost:3000/auth/verifyUser",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
-      }
-    }).then(res => {
-      if(res.status == 403){
-        getAccessToken();
-      }else{
-        return res.json() 
-      }
-    })
-    .then(data => {
-      if(data.success)
-        navigate("/dashboard/home")
-    }).catch(err => navigate("/auth/login"))
-  },[])
- 
+    if(accessToken){
+      fetch("http://localhost:3000/auth/verifyUser",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + accessToken
+        }
+      }).then(res => {
+        if(res.status == 403){
+          getAccessToken();
+          window.location.reload();
+        }else{
+          return res.json() 
+        }
+      })
+      .then(data => {
+        if(data.success)
+          navigate("/dashboard/home")
+      }).catch(err => {
+        Swal.fire({
+          title: 'Error!',
+          text: "Something went wrong",
+          icon: 'error',
+        })
+      })
+    }
+  },[])  
+
   const validate = () => {
-    let isValid = true; // Assume the form is valid by default
+    let isValid = true; 
   
     if(details){
 
@@ -65,7 +76,7 @@ export function Login() {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!regex.test(details.email)) {
           setErrorHelper(0, "Email is not valid");
-          isValid = false; // Set isValid to false if there's an error
+          isValid = false;
         } else {
           setErrorHelper(0, "");
         }
@@ -74,7 +85,7 @@ export function Login() {
       if (details.password) {
         if (details.password.length < 8) {
           setErrorHelper(1, "Password must be at least 8 characters long");
-          isValid = false; // Set isValid to false if there's an error
+          isValid = false; 
         } else {
           setErrorHelper(1, "");
         }
@@ -120,8 +131,6 @@ export function Login() {
     .then(data => {
       if(data.success){
         setLoading(loading)
-        sessionStorage.setItem("AccessToken",data.accessToken)
-        sessionStorage.setItem("RefreshToken",data.refreshToken)
         localStorage.setItem("AccessToken",data.accessToken)
         localStorage.setItem("RefreshToken",data.refreshToken)
         navigate("/dashboard/home")

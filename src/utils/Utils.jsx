@@ -10,7 +10,7 @@ export const getAccessToken = () => {
     .then(data => {
         if(data.success){
             console.log("Access Token refreshed");
-            sessionStorage.setItem("AccessToken",data.accessToken)
+            localStorage.setItem("AccessToken",data.accessToken)
         }
     }).catch(err => {
         console.log("Error in refreshing Access Token: ",err);

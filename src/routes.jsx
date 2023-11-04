@@ -1,7 +1,8 @@
 import { HomeIcon, XMarkIcon, Cog8ToothIcon, UserCircleIcon, DocumentIcon, DocumentPlusIcon, DocumentDuplicateIcon } from "@heroicons/react/24/solid"
 import { BiCart, BiCartAlt, BiCartAdd, BiUser, BiUserPlus, BiUserCircle } from "react-icons/bi"
-import { Home } from "@/pages/Dashboard"
+import { Home, Profile } from "@/pages/Dashboard"
 import { Bill, AllBills, Product, AllProducts } from "@/pages/Dashboard/cashier"
+import { User, AllUsers } from "@/pages/Dashboard/admin"
 
 const routes = {
     cashier : [
@@ -57,13 +58,13 @@ const routes = {
                 name: 'New User',
                 path: '/new-user',
                 icon: <BiUserPlus className='w-5 h-5 text-blue-500' />,
-                component: <Home />
+                component: <User />
             },
             {
                 name: 'All Users',
                 path: '/all-users',
                 icon: <BiUser className='w-5 h-5 text-blue-500' />,
-                component: <Home />
+                component: <AllUsers />
             },
         ],
         "General",
@@ -71,7 +72,7 @@ const routes = {
             name: 'Profile',
             path: '/profile',
             icon: <UserCircleIcon className='w-5 h-5 text-blue-500' />,
-            component: <Home />
+            component: <Profile />
         },
         {
             name: 'Settings',

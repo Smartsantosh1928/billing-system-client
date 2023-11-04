@@ -14,21 +14,16 @@ export function Dashboard() {
   const collapse = useSelector((state) => state.collapse.collapse);
   const dispatch = useDispatch();
 
-  // const [ collapse, setCollapse ] = useState(false)
   const [ role, setRole ] = useState("")
   const [ userRoutes, setUserRoutes ] = useState([])
   const navigate = useNavigate()
-
-  // const handleCollapse = () => {
-  //   setCollapse(!collapse)
-  // }
 
   useEffect(() => {
     fetch("http://localhost:3000/auth/verifyUser",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+        "Authorization": "Bearer " + localStorage.getItem("AccessToken")
       }
     }).then(res => {
       if(res.status == 403){
@@ -52,7 +47,7 @@ export function Dashboard() {
 
   return (
     <>
-    <Card className="w-auto h-screen fixed flex justify-start items-center overflow-y-auto">
+    <Card className="w-auto h-screen fixed flex justify-start items-center overflow-y-auto font-pop">
       <div className='flex my-5 justify-evenly items-center w-full'>
           <div className="flex justify-center gap-3 items-center">
             <img onClick={() => dispatch(handleCollapse())} src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" className="w-10 h-10 cursor-pointer" />
