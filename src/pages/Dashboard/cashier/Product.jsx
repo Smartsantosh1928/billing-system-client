@@ -7,6 +7,9 @@ import {
 } from "@material-tailwind/react";
 import { CgAddR } from "react-icons/cg";
 import { RxUpload } from "react-icons/rx";
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
+
 
  
 
@@ -14,17 +17,21 @@ export function Product() {
 
 
   const [imageUrl, setImageUrl] = useState(null);
-  const [details , setDetails] = useState({productname:"",barcode:"",measurement:"",description:"",price:"",stock:"",lowstock:"",})
+  const [details , setDetails] = useState({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
   const [active,setActive] = useState(false);
   const [imagedata,setImageData] = useState(null);
+  const [imageVal,setImageVal] = useState("");
+  const navigate = useNavigate();
+
 
   
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const imagedata = new FormData();
-    imagedata.append('image',file);
+    imagedata.append('file',file);
     setImageData(imagedata)
+    console.log(imagedata)
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -48,7 +55,7 @@ export function Product() {
     else if(imagedata!=null)
     {
       setDetails((prev)=>{
-          return{...prev,"image":imagedata}
+          return{...prev,"file":imagedata}
       })
     }
     else
@@ -57,6 +64,118 @@ export function Product() {
     })
     console.log(details)
   };
+
+
+  // const handleSubmit=(e)=>{
+  //   e.preventDefault();
+  //   let imageStr = ""
+  //   fetch("http://localhost:3000/files/upload",{
+  //     method: "POST",
+  //     body: imagedata
+  //   }).then(res => res.json())
+  //   .then(data => {
+  //     if(data.success){
+  //      setImageVal(data.fileName)
+  //      imageStr = data.fileName
+  //      console.log(imageStr);
+  //     }
+  //     else{
+  //       Swal.fire({
+  //         title: 'Error!',
+  //         text: data.msg,
+  //         icon: 'error',
+  //       })
+  //     }
+  //   }).catch(err => {
+  //     Swal.fire({
+  //       title: 'Error!',
+  //         text: err,
+  //         icon: 'error',
+  //     })
+  //   })
+
+  //   const product ={...details,image:imageStr};
+  //   console.log(product);
+  //   fetch("http://localhost:3000/products/add",{
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(product)
+  //   }).then(res => res.json())
+  //   .then(data => {
+  //     if(data.success){
+  //       Swal.fire({
+  //         title: 'Success...!',
+  //         text: data.msg,
+  //         icon: 'success',
+  //       })
+  //     }
+  //     else{
+  //       Swal.fire({
+  //         title: 'Error!',
+  //         text: data.msg,
+  //         icon: 'error',
+  //       })
+  //     }
+  //   }).catch(err => {
+  //     Swal.fire({
+  //       title: 'Error!',
+  //         text: err,
+  //         icon: 'error',
+  //     })
+  //   })
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let imageStr = "";
+      const uploadResponse = await fetch("http://localhost:3000/files/upload", {
+        method: "POST",
+        body: imagedata,
+      });
+      const uploadData = await uploadResponse.json();
+  
+      if (uploadData.success) {
+        setImageVal(uploadData.fileName);
+        imageStr = uploadData.fileName;
+        console.log(imageStr);
+      } else {
+        throw new Error(uploadData.msg);
+      }
+  
+      const product = { ...details, image: imageStr };
+      console.log(product);
+  
+      const addProductResponse = await fetch("http://localhost:3000/products/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
+      const addProductData = await addProductResponse.json();
+  
+      if (addProductData.success) {
+        Swal.fire({
+          title: 'Success...!',
+          text: addProductData.msg,
+          icon: 'success',
+        });
+      } else {
+        throw new Error(addProductData.msg);
+      }
+    } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: err.message,
+        icon: 'error',
+      });
+    }
+  };
+  
+
 
 
 return (
@@ -78,7 +197,7 @@ return (
             </Typography>
             <Input
               size="md"
-              name='productname'
+              name='name'
               onChange={handleChange}
               className="!border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
@@ -171,7 +290,7 @@ return (
             </Typography>
             <Input
               size="lg"
-              name='lowstock'
+              name='lowStock'
               onChange={handleChange}
               type='number'
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -184,7 +303,7 @@ return (
           <div className="flex flex-row mt-8 gap-2">
             <label className=" flex flex-row h-10 w-36 gap-2 justify-center items-center text-uppercase text-white text-center bg-black hover:bg-gray-700 py-2 px-4 rounded cursor-pointer"> Upload File
             <RxUpload className="w-4 h-4"/>
-            <input type="file" accept="image/*" name='image' onChange={handleFileUpload} className='hidden' />
+            <input type="file" accept="image/*" name='file' onChange={handleFileUpload} className='hidden' />
             </label>
             {imageUrl && <img src={imageUrl} alt="Selected Image" className='h-10 w-10' />}
           </div>
@@ -211,7 +330,7 @@ return (
           </div>
           </form>
           <div className="flex flex-col  sm:items-start sm:justify-start sm:w-full md:items-center md:justify-center gap-4 ">
-            <Button className="flex items-center justify-center w-60 mb-5 gap-4" fullWidth>
+            <Button className="flex items-center justify-center w-60 mb-5 gap-4" onClick={handleSubmit} fullWidth>
               Add Products<CgAddR className='w-4 h-5'/>
             </Button>
           </div>

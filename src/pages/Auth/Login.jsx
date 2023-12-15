@@ -141,7 +141,7 @@ export function Login() {
       }
       else{
         setLoading(loading)
-        Swal({
+        Swal.fire({
           title: 'Error!',
           text: data.msg,
           icon: 'error',
@@ -175,7 +175,7 @@ export function Login() {
         <Input label="Email" name="email" onChange={handleChange} size="lg" required />
         {errors[0]!="" && <Typography variant="small" color="red">{errors[0]}</Typography>}
         <Input label="Password" name="password" type={pass ? "text" : "password"} onChange={handleChange} size="lg" required/>
-        <div className="absolute mt-16 ml-60 md:mt-20 md:ml-72"><button className="absolute mt-2 md:-mt-1 md:ml-4" onClick={toggle} >{pass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</button></div>
+        <div className="absolute mt-16 ml-60 md:mt-20 md:ml-72"><button className="absolute mt-2 md:-mt-1 md:ml-4" onClick={toggle} >{pass ?  <AiOutlineEye /> : <AiOutlineEyeInvisible />}</button></div>
         {errors[1]!="" && <Typography variant="small" color="red">{errors[1]}</Typography>}
         <div className="-ml-2.5">
           <Checkbox label="Remember Me" name="remind-me" onChange={handleChange} />
@@ -187,7 +187,7 @@ export function Login() {
         </Button>}
         <Typography variant="small" className="mt-6 flex justify-center">
           Don&apos;t have an account?
-          <Link to="/auth/signup" className="text-base font-semibold hover:animate-pulse text-blue-500 ml-2" >Sign up</Link>
+          <Link to="/auth/signup" className="text-base font-semibold hover:animate-pulse text-blue-500 ml-2" >Sign In</Link>
         </Typography>
       </CardFooter>
     </Card>
