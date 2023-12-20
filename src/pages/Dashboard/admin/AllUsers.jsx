@@ -84,24 +84,27 @@ const TABLE_ROWS = [
 
 
 
-
 export function AllUsers() {
   
-  
-  const[data,setData]=useState([]);
+  const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200"] 
+  const[dataa,setData]=useState([]);
   useEffect(()=>{
-    fetch("http://localhost:3000/auth/verifyUser",{
-      method: "POST",
+    fetch("http://localhost:3000/user/allusers",{
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
-      }
-    }).then(data=>{
-       setData(data.json)
-    }).catch((error)=>{
-      console.error(error);
-    })
-  },[]);
-
+      },
+    }).then(res => res.json())
+    .then(data =>setData(data.User))
+    .then(console.log(dataa))
+    .catch(err => {
+      Swal.fire({
+        title: 'Error!',
+          text: err,
+          icon: 'error',
+      })
+    })},[]);
+  console.log(typeof dataa);
   
   return (
     <Card className="h-full w-full">
@@ -124,7 +127,7 @@ export function AllUsers() {
       <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
         <Tabs value="all" className="w-full md:w-max">
           <TabsHeader>
-            {TABS.map(({ label, value }) => (
+            {TABS?.map(({ label, value }) => (
               <Tab key={value} value={value}>
                 &nbsp;&nbsp;{label}&nbsp;&nbsp;
               </Tab>
@@ -163,18 +166,22 @@ export function AllUsers() {
           </tr>
         </thead>
         <tbody>
-          {TABLE_ROWS.map(
-            ({ img, name, email, job, org, date }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+          {dataa.map(
+            ({name,email,role,createdAt}, index) => {
+              const isLast = index === dataa.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
-
+              const clr=`${color[Math.floor(Math.random()*color.length)] } h-8 w-8 rounded-full flex justify-center items-center text-lg text-black`
+              
+              console.log(color[Math.floor(Math.random()*color.length)]);
               return (
                 <tr key={name}>
                   <td className={classes}>
                     <div className="flex items-center gap-3">
-                      <Avatar src={img} alt={name} size="sm" />
+                      <span className={clr}>
+                        {name[0]}
+                      </span>
                       <div className="flex flex-col">
                         <Typography
                           variant="small"
@@ -200,14 +207,7 @@ export function AllUsers() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {job}
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal opacity-70"
-                      >
-                        {org}
+                        {role}
                       </Typography>
                     </div>
                   </td>
@@ -218,7 +218,7 @@ export function AllUsers() {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {date}
+                      {createdAt}
                     </Typography>
                   </td>
                   <td className={classes}>
