@@ -133,6 +133,7 @@ export function Login() {
         setLoading(loading)
         localStorage.setItem("AccessToken",data.accessToken)
         localStorage.setItem("RefreshToken",data.refreshToken)
+        localStorage.setItem("Role",data.role)
         navigate("/dashboard/home")
       }
       else if(data.msg=="User not verified!"){
