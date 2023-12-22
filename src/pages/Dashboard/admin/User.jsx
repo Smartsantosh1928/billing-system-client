@@ -140,8 +140,8 @@ export function User() {
         <div className="absolute mt-28 ml-60 md:mt-36 md:ml-72"><button className="absolute  mt-6 md:-mt-2 md:ml-4" onClick={toggle} >{pass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</button></div>
         {errors[2]!="" && <Typography variant="small" color="red">{errors[2]}</Typography>}
         <div className="flex gap-3 ml-16">
-          <input type="radio" name="role" value="Cashier" onChange={handleChange} />Cashier
-          <input type="radio" name="role" value="Admin" onChange={handleChange} />Admin
+          <input type="radio" name="role" value="cashier" onChange={handleChange} />Cashier
+          <input type="radio" name="role" value="admin" onChange={handleChange} />Admin
         </div>
       </CardBody>
       <CardFooter className="pt-0 flex flex-col items-center justify-center">
