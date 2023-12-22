@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react'
+import Swal from "sweetalert2";
 import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
@@ -88,6 +89,9 @@ export function AllUsers() {
   
   const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200"] 
   const[dataa,setData]=useState([]);
+  const [records, setRecords] = useState([]);
+  const [reload, setReload] = useState(false)
+
   useEffect(()=>{
     fetch("http://localhost:3000/user/allusers",{
       method: "GET",
@@ -103,19 +107,35 @@ export function AllUsers() {
           text: err,
           icon: 'error',
       })
-    })},[]);
+    })},[reload]);
 
-    const [records, setRecords] = useState([]);
-
-  const handleDelete = async (email) => {
-    try {
-      await fetch(`http://localhost:3000/user/allusers/${email}`, {
-        method: 'DELETE'
-      });
-      setRecords(records.filter((record) => record.email !== email));
-    } catch (error) {
-      console.error('Error deleting record:', error);
-    }
+  const handleDelete =  (email) => {
+    Swal.fire({
+      title: 'Warning!',
+      text: "Are you sure!",
+      icon: 'warning',
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      showCancelButton: true,
+      showCloseButton: true
+    }).then((data) => {
+      if(data.isConfirmed){
+        fetch(`http://localhost:3000/user/allusers/${email}`, {
+          method: 'DELETE'
+        }).then(res=>{
+            res.json()
+            setReload(!reload)
+          }).catch(err => {
+          Swal.fire({
+            title: 'Error!',
+              text: err,
+              icon: 'error',
+          })
+        })
+        setRecords(records.filter((record) => record.email !== email));
+        console.error('Error deleting record:', error);
+      }
+    })
   };
   
   return (
