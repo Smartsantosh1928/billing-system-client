@@ -104,7 +104,19 @@ export function AllUsers() {
           icon: 'error',
       })
     })},[]);
-  console.log(typeof dataa);
+
+    const [records, setRecords] = useState([]);
+
+  const handleDelete = async (email) => {
+    try {
+      await fetch(`http://localhost:3000/user/allusers/${email}`, {
+        method: 'DELETE'
+      });
+      setRecords(records.filter((record) => record.email !== email));
+    } catch (error) {
+      console.error('Error deleting record:', error);
+    }
+  };
   
   return (
     <Card className="h-full w-full">
@@ -223,7 +235,7 @@ export function AllUsers() {
                   </td>
                   <td className={classes}>
                     <Tooltip content="Delete User">
-                      <IconButton variant="text">
+                      <IconButton onClick={()=>handleDelete(email)} variant="text">
                         <TrashIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>
