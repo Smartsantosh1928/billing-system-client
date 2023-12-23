@@ -16,7 +16,7 @@ import Loading from "react-loading";
    
 export function User() {
   const navigate = useNavigate()
-  const [details,setdetails] = useState({name:"",email:'',password:'',role:''})
+  const [details,setdetails] = useState({name:"",email:'',password:''})
   const [ checkbox, setCheckBox ] = useState(false)
   const [ validated, setValidated] = useState(false)
   const [ errors, serErrors ] = useState(["","",""])
@@ -27,7 +27,7 @@ export function User() {
   const toggle=()=>{
     showPass(!pass)
   }
-
+  
   const handleChange =(e)=>{
     const {name,value}=e.target
     setdetails((prev)=>{
@@ -35,12 +35,13 @@ export function User() {
     })
     validate();
   };
-
+  
   const role = localStorage.getItem("Role")
+  
   
   const validate = () => {
     let isValid = true; // Assume the form is valid by default
-  
+    
     if (details.name) {
       const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
       if (!regex.test(details.name)) {
@@ -106,7 +107,7 @@ export function User() {
         handleOpen()
       }else{
         setLoading(false)
-        setdetails({name:'',email:'',password:''})
+        setdetails({name:'',email:'',password:'',})
         Swal.fire({
           title: 'Error!',
           text: data.msg,
@@ -129,7 +130,9 @@ export function User() {
     <>
     <div className="flex flex-col justify-center items-center h-full">
         <Typography variant="h3" color="black">
-          Add Users
+          {
+            role=='admin'?<>Add Casher</>:<>Add Admin</>
+          }
         </Typography>
     <Card className="w-96 ">
       <CardBody className="flex flex-col gap-4">
@@ -144,9 +147,9 @@ export function User() {
           {console.log(role)}
           {
             role=='admin'? 
-                <><input type="radio" name="role" value="cashier" onChange={handleChange} />Cashier</>
+                <><input type="radio" name="role" value="cashier" onChange={handleChange}/>Cashier</>
               :
-              <><input type="radio" name="role" value="admin" onChange={handleChange} />Admin</>
+              <><input type="radio" name="role" value="admin" onChange={handleChange}/>Admin</>
           } 
 
           
