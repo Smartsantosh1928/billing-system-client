@@ -33,7 +33,7 @@ const TABS = [
   
 ];
  
-const TABLE_HEAD = ["Member", "Roles","Date","Edit"];
+const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 
 
 
@@ -45,13 +45,13 @@ export function AllProducts() {
   const [reload, setReload] = useState(false)
 
   useEffect(()=>{
-    fetch("http://localhost:3000products/",{
+    fetch("http://localhost:3000/products/",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
     }).then(res => res.json())
-    .then(data =>setData(data.User))
+    .then(data =>setData(data.Products))
     .then(console.log(dataa))
     .catch(err => {
       Swal.fire({
@@ -59,9 +59,9 @@ export function AllProducts() {
           text: err,
           icon: 'error',
       })
-    })},[reload]);
-  console.log(dataa);
-  
+    })},[]);
+    console.log(dataa);
+
   const handleDelete =  (email) => {
     Swal.fire({
       title: 'Warning!',
@@ -152,7 +152,7 @@ export function AllProducts() {
         </thead>
         <tbody>
           {dataa.map(
-            ({name,email,role,createdAt}, index) => {
+            ({name,description,barcode,stock,lowStock,price,id}, index) => {
               const isLast = index === dataa.length - 1;
               const classes = isLast
                 ? "p-4"
@@ -180,7 +180,7 @@ export function AllProducts() {
                           color="blue-gray"
                           className="font-normal opacity-70"
                         >
-                          {email}
+                          {description}
                         </Typography>
                       </div>
                     </div>
@@ -192,7 +192,7 @@ export function AllProducts() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {role}
+                        {barcode}
                       </Typography>
                     </div>
                   </td>
@@ -203,15 +203,33 @@ export function AllProducts() {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {createdAt}
+                      {stock}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {lowStock}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {price}
                     </Typography>
                   </td>
                   <td className={classes}>
                     <Tooltip content="Delete User">
-                      <IconButton onClick={()=>handleDelete(email)} variant="text">
+                      <IconButton onClick={()=>handleDelete(id)} variant="text">
                         <TrashIcon className="h-4 w-4" />
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip>  
                   </td>
                 </tr>
               );
