@@ -150,7 +150,7 @@ export function AllUsers() {
           </tr>
         </thead>
         <tbody>
-          {dataa.map(
+          {dataa?.map(
             ({name,email,role,createdAt}, index) => {
               const isLast = index === dataa.length - 1;
               const classes = isLast

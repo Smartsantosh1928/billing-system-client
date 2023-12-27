@@ -101,7 +101,7 @@ export function Signup() {
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({...details})
+      body: JSON.stringify({...details,role:"admin"})
     }).then(res => res.json())
     .then(data => {
     setLoading(false)

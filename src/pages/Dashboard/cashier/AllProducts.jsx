@@ -4,7 +4,7 @@ import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
 } from "@heroicons/react/24/outline";
-import {  UserPlusIcon ,TrashIcon } from "@heroicons/react/24/solid";
+import {  UserPlusIcon ,TrashIcon,WrenchScrewdriverIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -225,9 +225,14 @@ export function AllProducts() {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Tooltip content="Delete User">
+                    <Tooltip content="Delete Product">
                       <IconButton onClick={()=>handleDelete(id)} variant="text">
                         <TrashIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>  
+                    <Tooltip content="Edit Product">
+                      <IconButton onClick={()=>handleDelete(id)} variant="text">
+                        <WrenchScrewdriverIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>  
                   </td>
