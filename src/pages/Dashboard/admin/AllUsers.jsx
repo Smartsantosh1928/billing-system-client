@@ -85,6 +85,7 @@ export function AllUsers() {
           })
         })
         setRecords(records.filter((record) => record.email !== email));
+        console.log(records);
         console.error('Error deleting record:', error);
       }
     })

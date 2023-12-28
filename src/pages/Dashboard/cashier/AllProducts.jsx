@@ -41,7 +41,6 @@ export function AllProducts() {
   
   const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200"] 
   const[dataa,setData]=useState([]);
-  const [records, setRecords] = useState([]);
   const [reload, setReload] = useState(false)
 
   useEffect(()=>{
@@ -62,7 +61,7 @@ export function AllProducts() {
     })},[]);
     console.log(dataa);
 
-  const handleDelete =  (email) => {
+  const handleDelete =  (_id) => {
     Swal.fire({
       title: 'Warning!',
       text: "Are you sure!",
@@ -72,8 +71,10 @@ export function AllProducts() {
       showCancelButton: true,
       showCloseButton: true
     }).then((data) => {
+      console.log(data);
       if(data.isConfirmed){
-        fetch(`http://localhost:3000/user/allusers/${email}`, {
+        try{
+          fetch(`http://localhost:3000/products/delete/${_id}`, {
           method: 'DELETE'
         }).then(res=>{
             res.json()
@@ -85,8 +86,12 @@ export function AllProducts() {
               icon: 'error',
           })
         })
-        setRecords(records.filter((record) => record.email !== email));
         console.error('Error deleting record:', error);
+        }
+        catch(error)
+        {
+          console.log(error);
+        }
       }
     })
   };
@@ -152,7 +157,7 @@ export function AllProducts() {
         </thead>
         <tbody>
           {dataa.map(
-            ({name,description,barcode,stock,lowStock,price,id}, index) => {
+            ({name,description,barcode,stock,lowStock,price,_id}, index) => {
               const isLast = index === dataa.length - 1;
               const classes = isLast
                 ? "p-4"
@@ -160,6 +165,7 @@ export function AllProducts() {
               const clr=`${color[Math.floor(Math.random()*color.length)] } h-8 w-8 rounded-full flex justify-center items-center text-lg text-black`
               
               console.log(color[Math.floor(Math.random()*color.length)]);
+              console.log(_id)
               return (
                 <tr key={name}>
                   <td className={classes}>
@@ -226,12 +232,12 @@ export function AllProducts() {
                   </td>
                   <td className={classes}>
                     <Tooltip content="Delete Product">
-                      <IconButton onClick={()=>handleDelete(id)} variant="text">
+                      <IconButton onClick={()=>handleDelete(_id)} variant="text">
                         <TrashIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>  
                     <Tooltip content="Edit Product">
-                      <IconButton onClick={()=>handleDelete(id)} variant="text">
+                      <IconButton onClick={()=>handleDelete(_id)} variant="text">
                         <WrenchScrewdriverIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>  
