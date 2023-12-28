@@ -39,9 +39,10 @@ const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 
 export function AllProducts() {
   
-  const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200"] 
+  const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200","bg-green-300","bg-purple-300"] 
   const[dataa,setData]=useState([]);
-  const [records, setRecords] = useState([]);
+  const [pages, setPages] = useState({});
+  const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
 
   useEffect(()=>{
@@ -49,9 +50,15 @@ export function AllProducts() {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
-      },
+      },body:JSON.stringify({page})
     }).then(res => res.json())
-    .then(data =>setData(data.Products))
+    .then(data =>{
+        setData(data.Products)
+        setPages({
+          totalPages: data.totalPages,
+          currentPage: data.currentPage
+        })
+      })
     .then(console.log(dataa))
     .catch(err => {
       Swal.fire({
@@ -59,10 +66,11 @@ export function AllProducts() {
           text: err,
           icon: 'error',
       })
-    })},[]);
+    })},[reload,page]);
     console.log(dataa);
 
-  const handleDelete =  (email) => {
+  const handleDelete = (_id) => {
+    console.log(_id);
     Swal.fire({
       title: 'Warning!',
       text: "Are you sure!",
@@ -73,7 +81,7 @@ export function AllProducts() {
       showCloseButton: true
     }).then((data) => {
       if(data.isConfirmed){
-        fetch(`http://localhost:3000/user/allusers/${email}`, {
+        fetch(`http://localhost:3000/products/delete/${_id}`, {
           method: 'DELETE'
         }).then(res=>{
             res.json()
@@ -85,7 +93,6 @@ export function AllProducts() {
               icon: 'error',
           })
         })
-        setRecords(records.filter((record) => record.email !== email));
         console.error('Error deleting record:', error);
       }
     })
@@ -97,19 +104,15 @@ export function AllProducts() {
       <div className="mb-8 flex items-center justify-between gap-8">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Members list
+            Product list
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
-            See information about all members
+            See information about all Products
           </Typography>
         </div>
-        <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button className="flex items-center gap-3" size="sm">
-              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add company
-            </Button>
-          </div>
+        
       </div>
-      <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+      {/* <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
         <Tabs value="all" className="w-full md:w-max">
           <TabsHeader>
             {TABS?.map(({ label, value }) => (
@@ -125,10 +128,10 @@ export function AllProducts() {
             icon={<MagnifyingGlassIcon className="h-5 w-5" />}
           />
         </div>
-      </div>
+      </div> */}
     </CardHeader>
-    <CardBody className="overflow-scroll px-0">
-      <table className="mt-4 w-full min-w-max table-auto text-left">
+    <CardBody className="px-0">
+      <table className="w-full min-w-max table-auto text-left">
         <thead>
           <tr>
             {TABLE_HEAD.map((head, index) => (
@@ -152,7 +155,7 @@ export function AllProducts() {
         </thead>
         <tbody>
           {dataa.map(
-            ({name,description,barcode,stock,lowStock,price,id}, index) => {
+            ({name,description,barcode,stock,lowStock,price,_id}, index) => {
               const isLast = index === dataa.length - 1;
               const classes = isLast
                 ? "p-4"
@@ -165,7 +168,7 @@ export function AllProducts() {
                   <td className={classes}>
                     <div className="flex items-center gap-3">
                       <span className={clr}>
-                        {name[0]}
+                        {name[0]?.toUpperCase()}
                       </span>
                       <div className="flex flex-col">
                         <Typography
@@ -225,16 +228,12 @@ export function AllProducts() {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Tooltip content="Delete Product">
-                      <IconButton onClick={()=>handleDelete(id)} variant="text">
-                        <TrashIcon className="h-4 w-4" />
+                      <IconButton onClick={()=>handleDelete(_id)} variant="text">
+                        <TrashIcon className="h-4 w-4 text-red-600" />
                       </IconButton>
-                    </Tooltip>  
-                    <Tooltip content="Edit Product">
                       <IconButton onClick={()=>handleDelete(id)} variant="text">
-                        <WrenchScrewdriverIcon className="h-4 w-4" />
+                        <WrenchScrewdriverIcon className="h-4 w-4 text-green-600" />
                       </IconButton>
-                    </Tooltip>  
                   </td>
                 </tr>
               );
@@ -245,13 +244,13 @@ export function AllProducts() {
     </CardBody>
     <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
       <Typography variant="small" color="blue-gray" className="font-normal">
-        Page 1 of 10
+        Page {pages.currentPage} of {pages.totalPages}
       </Typography>
       <div className="flex gap-2">
-        <Button variant="outlined" size="sm">
+        <Button variant="outlined" disabled={page <= 1} onClick={()=>setPage(pages.currentPage>1 ? pages.currentPage-1 :1)} size="sm">
           Previous
         </Button>
-        <Button variant="outlined" size="sm">
+        <Button variant="outlined" disabled={page >= pages.totalPages} onClick={()=>setPage(pages.currentPage<pages.totalPages ? pages.currentPage+1 :pages.currentPage)} size="sm">
           Next
         </Button>
       </div>

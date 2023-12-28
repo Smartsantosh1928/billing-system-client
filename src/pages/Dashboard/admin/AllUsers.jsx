@@ -164,7 +164,7 @@ export function AllUsers() {
                   <td className={classes}>
                     <div className="flex items-center gap-3">
                       <span className={clr}>
-                        {name[0]}
+                        {name[0]?.toUpperCase()}
                       </span>
                       <div className="flex flex-col">
                         <Typography
@@ -206,11 +206,9 @@ export function AllUsers() {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Tooltip content="Delete User">
                       <IconButton onClick={()=>handleDelete(email)} variant="text">
-                        <TrashIcon className="h-4 w-4" />
+                        <TrashIcon className="h-4 w-4 text-red-600" />
                       </IconButton>
-                    </Tooltip>
                   </td>
                 </tr>
               );
