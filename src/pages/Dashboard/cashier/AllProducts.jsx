@@ -22,7 +22,7 @@ const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 export function AllProducts() {
   
   const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200","bg-green-300","bg-purple-300"] 
-  const [dataa,setData]=useState([]);
+  const[dataa,setData]=useState([]);
   const [pages, setPages] = useState({});
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
