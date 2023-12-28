@@ -1,10 +1,9 @@
 import React, { useState,useEffect } from 'react'
 import Swal from "sweetalert2";
 import {
-  MagnifyingGlassIcon,
   ChevronUpDownIcon,
 } from "@heroicons/react/24/outline";
-import {  UserPlusIcon ,TrashIcon,WrenchScrewdriverIcon } from "@heroicons/react/24/solid";
+import { TrashIcon,WrenchScrewdriverIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -12,26 +11,9 @@ import {
   Typography,
   Button,
   CardBody,
-  Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
-  Avatar,
   IconButton,
-  Tooltip,
 } from "@material-tailwind/react";
-const TABS = [
-  {
-    label: "Admins",
-    value: "all",
-  },
-  {
-    label: "Cashier",
-    value: "monitored",
-  },
-  
-];
  
 const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 
@@ -40,7 +22,7 @@ const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 export function AllProducts() {
   
   const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200","bg-green-300","bg-purple-300"] 
-  const[dataa,setData]=useState([]);
+  const [dataa,setData]=useState([]);
   const [pages, setPages] = useState({});
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
