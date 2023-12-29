@@ -14,6 +14,9 @@ import {
   CardFooter,
   IconButton,
 } from "@material-tailwind/react";
+import Products from "./Product"
+
+import { BrowserRouter as Link, Route } from 'react-router-dom';
  
 const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 
@@ -22,7 +25,7 @@ const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 export function AllProducts() {
   
   const color=["bg-blue-400","bg-orange-400","bg-gray-300","bg-red-200","bg-green-300","bg-purple-300"] 
-  const[dataa,setData]=useState([]);
+  const [dataa,setData]=useState([]);
   const [pages, setPages] = useState({});
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
@@ -41,7 +44,6 @@ export function AllProducts() {
           currentPage: data.currentPage
         })
       })
-    .then(console.log(dataa))
     .catch(err => {
       Swal.fire({
         title: 'Error!',
@@ -50,9 +52,7 @@ export function AllProducts() {
       })
     })},[reload,page]);
     console.log(dataa);
-
   const handleDelete = (_id) => {
-    console.log(_id);
     Swal.fire({
       title: 'Warning!',
       text: "Are you sure!",
@@ -62,7 +62,6 @@ export function AllProducts() {
       showCancelButton: true,
       showCloseButton: true
     }).then((data) => {
-      console.log(data);
       if(data.isConfirmed){
         try{
           fetch(`http://localhost:3000/products/delete/${_id}`, {
@@ -87,6 +86,12 @@ export function AllProducts() {
     })
   };
   
+  const handleEdit = (_id)=>{
+      const edit = dataa.find((obj)=>obj._id===_id)
+      
+  }
+
+
   return (
     <Card className="h-full w-full">
     <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -150,9 +155,6 @@ export function AllProducts() {
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
               const clr=`${color[Math.floor(Math.random()*color.length)] } h-8 w-8 rounded-full flex justify-center items-center text-lg text-black`
-              
-              console.log(color[Math.floor(Math.random()*color.length)]);
-              console.log(_id)
               return (
                 <tr key={name}>
                   <td className={classes}>
@@ -221,9 +223,12 @@ export function AllProducts() {
                       <IconButton onClick={()=>handleDelete(_id)} variant="text">
                         <TrashIcon className="h-4 w-4 text-red-600" />
                       </IconButton>
-                      <IconButton onClick={()=>handleDelete(id)} variant="text">
-                        <WrenchScrewdriverIcon className="h-4 w-4 text-green-600" />
-                      </IconButton>
+                      <Router>
+                        <IconButton onClick={()=>handleEdit(_id)} variant="text">
+                          <WrenchScrewdriverIcon className="h-4 w-4 text-green-600" />
+                        </IconButton>
+                        <Route path='/new-product/:id' Component={<Products/>} />
+                      </Router>
                   </td>
                 </tr>
               );
