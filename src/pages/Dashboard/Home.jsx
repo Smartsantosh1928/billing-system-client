@@ -1,4 +1,4 @@
-import { PencilIcon } from "@heroicons/react/24/solid";
+import { PencilIcon,ExclamationTriangleIcon,UserGroupIcon,CurrencyRupeeIcon,ShoppingCartIcon } from "@heroicons/react/24/solid";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -78,23 +78,27 @@ export function Home() {
   const list =[
   {
     name:'Total Products',
-    clr1:'flex items-end h-[100px] w-[300px] rounded-xl bg-blue-400 shadow-xl shadow-blue-200',
-    clr2:'bottom-0 left-0 mb-2 flex ml-2'
+    clr1:'flex ml-24 items-end h-[100px] w-[220px] rounded-xl bg-blue-400 shadow-xl shadow-blue-200',
+    clr2:'bottom-0 left-0 mb-2 flex ml-2 ',
+    icon : <ShoppingCartIcon className="relative h-10 w-12 right-28 bottom-12 "/>
   },
   {
     name:'Low Stocks',
-    clr1:"flex items-end h-[100px] w-[300px] rounded-xl bg-red-400 shadow-xl shadow-red-200",
-    clr2:'bottom-0 left-0 mb-2 flex ml-2'
+    clr1:"flex items-end h-[100px] w-[220px] rounded-xl bg-red-400 shadow-xl shadow-red-200",
+    clr2:'bottom-0 left-0 mb-2 flex ml-2',
+    icon : <ExclamationTriangleIcon className="relative h-10 w-12 right-20 bottom-12 "/>
   },
   {
     name:'Total Customers',
-    clr1:"flex items-end h-[100px] w-[300px] rounded-xl bg-green-400 shadow-xl shadow-green-200",
-    clr2:'bottom-0 left-0 mb-2 flex ml-2'
+    clr1:"flex items-end h-[100px] w-[220px] rounded-xl bg-green-400 shadow-xl shadow-green-200",
+    clr2:'bottom-0 left-0 mb-2 flex ml-2',
+    icon : <UserGroupIcon className="relative h-10 w-12 right-32 bottom-12 "/>
   },
   {
     name:'Total Revenue',
-    clr1:"flex items-end h-[100px] w-[300px] rounded-xl bg-gray-400 shadow-xl shadow-blue-200",
-    clr2:'bottom-0 left-0 mb-2 flex ml-2'
+    clr1:"flex items-end h-[100px] w-[220px] rounded-xl bg-gray-400 shadow-xl shadow-gray-300",
+    clr2:'bottom-0 left-0 mb-2 flex ml-2',
+    icon : <CurrencyRupeeIcon className="relative h-10 w-12 right-28 bottom-12 "/>
   }]
 
 
@@ -102,10 +106,12 @@ export function Home() {
   return (
     <>
     <div className='flex gap-5 font-pop '>
-      {list.map(({name,clr1,clr2})=>{
+      {list.map(({name,clr1,clr2,icon})=>{
         return<div className={clr1}>
           <h1 className={clr2}>{name}</h1>
+          {icon}
         </div>
+    
       })}
     </div>
     <Card className="h-full w-full mt-8">
