@@ -5,15 +5,13 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 
 export function Bill() {
 
-  const [formData, setFormData] = useState({
-     pname:'',
-     quantity:''
-  });
+  const [formData, setFormData] = useState({pname:''});
+  const [details,setDetails] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,8 +19,16 @@ export function Bill() {
       [e.target.name]: e.target.value
     });
   };
-
-  
+ 
+ useEffect(()=>{
+  fetch('http://localhost:3000/bill/new-bill',{
+    method: "GET"
+  })
+  .then(res=>res.json())
+  .then(data=>setDetails(data.Products))
+  .catch(err=>console.log(err))
+ },[])
+ console.log(details);
   return (
     <div className=''>
       <Card color="transparent" shadow={false}>
