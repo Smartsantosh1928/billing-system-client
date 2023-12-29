@@ -223,12 +223,9 @@ export function AllProducts() {
                       <IconButton onClick={()=>handleDelete(_id)} variant="text">
                         <TrashIcon className="h-4 w-4 text-red-600" />
                       </IconButton>
-                      <Router>
                         <IconButton onClick={()=>handleEdit(_id)} variant="text">
                           <WrenchScrewdriverIcon className="h-4 w-4 text-green-600" />
                         </IconButton>
-                        <Route path='/new-product/:id' Component={<Products/>} />
-                      </Router>
                   </td>
                 </tr>
               );
