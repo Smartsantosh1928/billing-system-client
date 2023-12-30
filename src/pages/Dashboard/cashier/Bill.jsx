@@ -12,6 +12,10 @@ export function Bill() {
 
   const [formData, setFormData] = useState({pname:''});
   const [details,setDetails] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [filteredProduct, setFilteredProducts] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -28,7 +32,28 @@ export function Bill() {
   .then(data=>setDetails(data.Products))
   .catch(err=>console.log(err))
  },[])
- console.log(details);
+
+ const handleSearch = (event) => {
+  setSearchTerm(event.target.value);
+
+  const filtered = details.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setFilteredProducts(filtered);
+
+  setShowDropdown(searchTerm !== '' && filtered.length > 0);
+};
+
+const filteredProducts = details.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleProductSelection = (product) => {
+    setSelectedProduct(product); 
+    setSearchTerm(product.name);
+    setShowDropdown(false); 
+  };
   return (
     <div className=''>
       <Card color="transparent" shadow={false}>
@@ -43,9 +68,21 @@ export function Bill() {
     <div className="flex justify-center">
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" >
         <div className="mb-1 flex flex-col gap-6">
-          <Input name="pname" label="Product Name" onChange={handleChange} color="blue" />
+          <Input name="pname" label="Product Name" value={searchTerm} onChange={handleSearch} color="blue" />
           <Input name="quantity" label="Quantity" onChange={handleChange} color="blue" />
         </div>
+        <ul className="absolute bg-white border border-gray-200 px-3 rounded-md shadow-lg w-96 z-10">
+        {filteredProducts.map((product) => (
+          <li
+            key={product.id}
+            onClick={() => handleProductSelection(product)} 
+            className="cursor-pointer"
+          >
+            {product.name}
+          </li>
+
+        ))}
+      </ul>
         <div className="flex justify-center items-center" >
         <Button className="mt-6 w-80" color="black" fullWidth>
             Add

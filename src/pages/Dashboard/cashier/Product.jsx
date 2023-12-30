@@ -126,6 +126,9 @@ export function Product() {
   //     })
   //   })
   // }
+// const reset=()=>{
+//   document.querySelectorAll(".clear").forEach((e)=>e.value="")
+// }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -156,13 +159,15 @@ export function Product() {
         body: JSON.stringify(product),
       });
       const addProductData = await addProductResponse.json();
-  
+     
       if (addProductData.success) {
         Swal.fire({
           title: 'Success...!',
           text: addProductData.msg,
           icon: 'success',
         });
+        // reset();
+    
       } else {
         throw new Error(addProductData.msg);
       }
@@ -172,6 +177,7 @@ export function Product() {
         text: err.message,
         icon: 'error',
       });
+     
     }
   };
   
@@ -199,7 +205,7 @@ return (
               size="md"
               name='name'
               onChange={handleChange}
-              className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -215,7 +221,7 @@ return (
               name='barcode'
               type='number'
               onChange={handleChange}
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -230,7 +236,7 @@ return (
               size="lg"
               name='measurement'
               onChange={handleChange}
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -245,7 +251,7 @@ return (
               size="lg"
               name='description'
               onChange={handleChange}
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -261,7 +267,7 @@ return (
               name='price'
               onChange={handleChange}
               type='number'
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -277,7 +283,7 @@ return (
               name='stock'
               onChange={handleChange}
               type ='number'
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -293,7 +299,7 @@ return (
               name='lowStock'
               onChange={handleChange}
               type='number'
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -303,7 +309,7 @@ return (
           <div className="flex flex-row mt-8 gap-2">
             <label className=" flex flex-row h-10 w-36 gap-2 justify-center items-center text-uppercase text-white text-center bg-black hover:bg-gray-700 py-2 px-4 rounded cursor-pointer"> Upload File
             <RxUpload className="w-4 h-4"/>
-            <input type="file" accept="image/*" name='file' onChange={handleFileUpload} className='hidden' />
+            <input type="file" accept="image/*" name='file' onChange={handleFileUpload} className='clear hidden' />
             </label>
             {imageUrl && <img src={imageUrl} alt="Selected Image" className='h-10 w-10' />}
           </div>
@@ -316,7 +322,7 @@ return (
                 <Typography
                   variant="small"
                   color="gray"
-                  className="flex items-center font-normal"
+                  className="clear flex items-center font-normal"
                 >
                   <p
                     className="font-medium transition-colors hover:text-gray-900"
