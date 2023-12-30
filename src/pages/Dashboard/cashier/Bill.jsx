@@ -50,10 +50,14 @@ const filteredProducts = details.filter((product) =>
   );
 
   const handleProductSelection = (product) => {
-    setSelectedProduct(product); 
     setSearchTerm(product.name);
     setShowDropdown(false); 
   };
+
+  const handleClickOutside = () => {
+    setShowDropdown(false); 
+  };
+
   return (
     <div className=''>
       <Card color="transparent" shadow={false}>
@@ -67,22 +71,23 @@ const filteredProducts = details.filter((product) =>
         </div>
     <div className="flex justify-center">
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" >
-        <div className="mb-1 flex flex-col gap-6">
-          <Input name="pname" label="Product Name" value={searchTerm} onChange={handleSearch} color="blue" />
+        <div className="mb-1 flex flex-col gap-6"  >
+          <Input name="pname" label="Product Name" onClick={handleClickOutside} value={searchTerm} onChange={handleSearch} color="blue" />
           <Input name="quantity" label="Quantity" onChange={handleChange} color="blue" />
         </div>
-        <ul className="absolute bg-white border border-gray-200 px-3 rounded-md shadow-lg w-96 z-10">
-        {filteredProducts.map((product) => (
-          <li
-            key={product.id}
-            onClick={() => handleProductSelection(product)} 
-            className="cursor-pointer"
-          >
-            {product.name}
-          </li>
-
-        ))}
-      </ul>
+        {showDropdown && (
+          <ul className="absolute bg-white border border-gray-200 px-3 rounded-md shadow-lg w-96 z-10">
+            {filteredProducts.map((product) => (
+              <li
+                key={product.id}
+                onClick={() => handleProductSelection(product)}
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+              >
+                {product.name}
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="flex justify-center items-center" >
         <Button className="mt-6 w-80" color="black" fullWidth>
             Add
