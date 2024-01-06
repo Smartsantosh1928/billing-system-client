@@ -2,7 +2,7 @@ import React from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
 import img3 from "../../../public/bill.png"
-import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon } from "@heroicons/react/24/solid";
+import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon,CheckCircleIcon,ComputerDesktopIcon,SquaresPlusIcon } from "@heroicons/react/24/solid";
 import Footer from './Footer'
 
 const Home = () => {
@@ -58,34 +58,62 @@ const Home = () => {
       <h1 className='text-3xl font-semibold text-blue-300'>All-in-one small business billing, invoicing, and accounting software</h1>
       <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
     </div>
-    <div className='flex justify-center'>
-       <div className='h-[300px] w-[850px] rounded-3xl bg-gray-200'>
-          <p className='text-lg font-bold p-12'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
-
-          <div className='w-[70%] flex flex-wrap ml-5'>
-            <div className='w-1/2 p-3 flex'>
-             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Offer plans and add-ons</p>
-            </div>
-            <div className='w-1/2 p-3   flex'>
-             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Handle customer subscriptions</p>
-             </div>
-             <div className='w-full md:w-1/2 p-3  flex'>
-             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Reduce customer churn</p>
-            </div>
-            <div className='w-full md:w-1/2 p-3 pr-3 flex'>
-             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Track subscription metrics</p>
-            </div>
-            <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Learn More</button>
-          </div > 
-          <div className='flex justify-end -mt-48 p-1 pb-1'>
-             <img className='h-[190px] w-[260px]' src={img3} alt="" />
-          </div> 
+    <div className='w-full flex justify-center'>
+       <div className='h-[300px] w-[900px] rounded-3xl bg-gray-100'>
+          <p className='text-lg font-bold py-8 text-center'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
+          <div className='flex'>
+            <div className='w-[70%] flex flex-wrap pl-8'>
+              <div className='w-1/2 p-3 flex'>
+              <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Offer plans and add-ons</p>
+              </div>
+              <div className='w-1/2 p-3   flex'>
+              <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Handle customer subscriptions</p>
+              </div>
+              <div className='w-full md:w-1/2 p-3 flex'>
+              <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Reduce customer churn</p>
+              </div>
+              <div className='w-full md:w-1/2 p-3 pr-3 flex'>
+              <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Track subscription metrics</p>
+              </div>
+              <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Learn More</button>
+            </div> 
+            <div className='pr-5'>
+              <img className='h-[190px] w-[260px]' src={img3} alt="" />
+            </div> 
+          </div>
         </div>
     </div>
 
-    <div className='w-full flex justify-evenly p-7'>
-      <div className='w-[480px] h-[250px] bg-gray-200 rounded-3xl'>
-        <p className='m-7 text-lg'>All Software Include:</p>
+    <div className='w-full flex items-center justify-evenly p-10'>
+      <div className= 'w-[30%]'>
+        <h1 className='text-3xl py-8'>Our products</h1>
+        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>435+ million users</p>
+        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>30-day money-back guarantee</p>
+        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>Available only for all operating systems: PC, Mac</p>
+      </div>
+      <div className='flex gap-1'>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
+            <ComputerDesktopIcon className='w-10 text-orange-500'/>
+            <h1 className='text-xl'>Free Trail</h1>
+            <h1 className='text-3xl font-semibold'>FREE</h1>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+          </div>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
+            <SquaresPlusIcon className='w-10 text-orange-500'/>
+            <div className='flex flex-col items-center'>
+              <h1 className='text-xl'>Premium</h1>
+              <span className='bg-green-400 rounded-lg font-semibold p-1'>Save70%</span>
+            </div>
+            <h1 className='text-3xl font-semibold'>FREE</h1>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+          </div>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
+            <ComputerDesktopIcon className='w-10 text-orange-500'/>
+            <h1 className='text-xl'>Free Trail</h1>
+            <h1 className='text-3xl font-semibold'>FREE</h1>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+          </div>
+          
       </div>
     </div>
     {/* <Footer/> */} 
