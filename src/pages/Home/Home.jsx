@@ -1,7 +1,8 @@
 import React from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
-import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon } from "@heroicons/react/24/solid";
+import img3 from "../../../public/bill.png"
+import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon } from "@heroicons/react/24/solid";
 import Footer from './Footer'
 
 const Home = () => {
@@ -31,24 +32,63 @@ const Home = () => {
       </div>
     </div>
     <div className='flex  item-start items-center justify-evenly ml-44 mt-8  h-40 w-[77%] rounded-3xl bg-orange-100'>
+      
       <div className='flex items-center'>
          <ShieldCheckIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>High Security</p>
        </div>
+
        <div className='flex items-center'>
          <UserGroupIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>User Friendly</p>
        </div>
+
        <div className='flex items-center'>
          <CubeTransparentIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>Accuracy</p>
        </div>
+
        <div className='flex items-center'>
          <ShoppingCartIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>Inventory Tracking</p>
        </div>
+
     </div>
-    {/* <Footer/> */}
+    <div className='flex flex-col justify-center items-center p-10'>
+      <h1 className='text-3xl font-semibold text-blue-300'>All-in-one small business billing, invoicing, and accounting software</h1>
+      <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+    </div>
+    <div className='flex justify-center'>
+       <div className='h-[300px] w-[850px] rounded-3xl bg-gray-200'>
+          <p className='text-lg font-bold p-12'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
+
+          <div className='w-[70%] flex flex-wrap ml-5'>
+            <div className='w-1/2 p-3 flex'>
+             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Offer plans and add-ons</p>
+            </div>
+            <div className='w-1/2 p-3   flex'>
+             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Handle customer subscriptions</p>
+             </div>
+             <div className='w-full md:w-1/2 p-3  flex'>
+             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Reduce customer churn</p>
+            </div>
+            <div className='w-full md:w-1/2 p-3 pr-3 flex'>
+             <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Track subscription metrics</p>
+            </div>
+            <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Learn More</button>
+          </div > 
+          <div className='flex justify-end -mt-48 p-1 pb-1'>
+             <img className='h-[190px] w-[260px]' src={img3} alt="" />
+          </div> 
+        </div>
+    </div>
+
+    <div className='w-full flex justify-evenly p-7'>
+      <div className='w-[480px] h-[250px] bg-gray-200 rounded-3xl'>
+        <p className='m-7 text-lg'>All Software Include:</p>
+      </div>
+    </div>
+    {/* <Footer/> */} 
     </>
   )
 }
