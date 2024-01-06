@@ -98,13 +98,17 @@ const Home = () => {
             <h1 className='text-3xl font-semibold'>FREE</h1>
             <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
           </div>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 border-orange-500 gap-6 shadow-lg '>
             <SquaresPlusIcon className='w-10 text-orange-500'/>
             <div className='flex flex-col items-center'>
               <h1 className='text-xl'>Premium</h1>
               <span className='bg-green-400 rounded-lg font-semibold p-1'>Save70%</span>
             </div>
-            <h1 className='text-3xl font-semibold'>FREE</h1>
+            <div className='flex'>
+              <span className='pt-[10px] font-medium'>Rs</span>
+              <h1 className='text-3xl pl-1 pr-1 font-semibold'>599.00</h1>
+              <span className='pt-[10px]'>/mo</span>
+            </div>
             <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
           </div>
           <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
