@@ -2,7 +2,7 @@ import React from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
 import img3 from "../../../public/bill.png"
-import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon,CheckCircleIcon,ComputerDesktopIcon,SquaresPlusIcon } from "@heroicons/react/24/solid";
+import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon,CheckCircleIcon,ComputerDesktopIcon,SquaresPlusIcon,CalendarDaysIcon } from "@heroicons/react/24/solid";
 import Footer from './Footer'
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
     </div>
     <div className='flex flex-col items-center justify-center w-full gap-5 pt-10'>
         <h1 className='text-5xl font-semibold' >Commerce Hub Multi Industry Product</h1>
-        <p className='text-lg text-gray-700 w-[60%] text-center gap-3'> Compare our award-winning security products to choose the best for you. Join the 435 million users who trust Avast to keep them safe.</p>
+        <p className='text-lg text-gray-700 w-[60%] text-center gap-3'> Compare our award-winning security products to choose the best for you. Join the 435 million users who trust Our Product to keep them safe.</p>
     </div>
     <div className='w-full flex justify-evenly'>
       <div className='hidden md:block'>
@@ -34,22 +34,22 @@ const Home = () => {
     <div className='flex  item-start items-center justify-evenly ml-44 mt-8  h-40 w-[77%] rounded-3xl bg-orange-100'>
       
       <div className='flex items-center'>
-         <ShieldCheckIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
+         <ShieldCheckIcon className='h-[55px] w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>High Security</p>
        </div>
 
        <div className='flex items-center'>
-         <UserGroupIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
+         <UserGroupIcon className='h-[55px] w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>User Friendly</p>
        </div>
 
        <div className='flex items-center'>
-         <CubeTransparentIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
+         <CubeTransparentIcon className='h-[55px] w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>Accuracy</p>
        </div>
 
        <div className='flex items-center'>
-         <ShoppingCartIcon className='h-16 w-16 text-orange-500 bg-transparent'/>
+         <ShoppingCartIcon className='h-[55px] w-16 text-orange-500 bg-transparent'/>
          <p className='text-xl font-semibold'>Inventory Tracking</p>
        </div>
 
@@ -85,42 +85,49 @@ const Home = () => {
     </div>
 
     <div className='w-full flex items-center justify-evenly p-10'>
-      <div className= 'w-[30%]'>
-        <h1 className='text-3xl py-8'>Our products</h1>
-        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>435+ million users</p>
-        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>30-day money-back guarantee</p>
-        <p className='flex text-lg py-2'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>Available only for all operating systems: PC, Mac</p>
+      <div className= 'w-[30%] mr-14'>
+        <h1 className='text-3xl py-7 px-3 hover:text-blue-400'>Our products</h1>
+        <p className='flex text-base py-2 hover:text-blue-400'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>435+ million users</p>
+        <p className='flex text-base py-2 hover:text-blue-400'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>Available only for all OS: PC, Mac</p>
+        <p className='flex text-base py-2 hover:text-blue-400'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>30-day money-back guarantee</p>
       </div>
-      <div className='flex gap-1'>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
+      <div className='flex gap-5'>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 hover:border-orange-500  gap-9 shadow-xl '>
             <ComputerDesktopIcon className='w-10 text-orange-500'/>
             <h1 className='text-xl'>Free Trail</h1>
             <h1 className='text-3xl font-semibold'>FREE</h1>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button>
           </div>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 border-orange-500 gap-6 shadow-lg '>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2  hover:border-orange-500  gap-6 shadow-xl '>
             <SquaresPlusIcon className='w-10 text-orange-500'/>
             <div className='flex flex-col items-center'>
-              <h1 className='text-xl'>Premium</h1>
-              <span className='bg-green-400 rounded-lg font-semibold p-1'>Save70%</span>
+              <h1 className='text-xl'>Monthly</h1>
+              <span className='bg-light-green-500 rounded-lg font-semibold p-1 -tracking-tighter'>Save70%</span>
             </div>
             <div className='flex'>
               <span className='pt-[10px] font-medium'>Rs</span>
               <h1 className='text-3xl pl-1 pr-1 font-semibold'>599.00</h1>
               <span className='pt-[10px]'>/mo</span>
             </div>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button>
           </div>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border gap-6 shadow-lg '>
-            <ComputerDesktopIcon className='w-10 text-orange-500'/>
-            <h1 className='text-xl'>Free Trail</h1>
-            <h1 className='text-3xl font-semibold'>FREE</h1>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 border-orange-500 gap-6 shadow-xl '>
+            <CalendarDaysIcon className='w-10 text-orange-500'/>
+            <div className='flex flex-col items-center'>
+              <h1 className='text-xl'>Yearly</h1>
+              <span className='bg-light-green-500 rounded-lg font-semibold p-1 -tracking-tighter'>Save50%</span>
+            </div>
+            <div className='flex'>
+              <span className='pt-[10px] font-medium'>Rs</span>
+              <h1 className='text-3xl pl-1 pr-1 font-semibold'>59,999.00</h1>
+              <span className='pt-[10px]'>/yr</span>
+            </div>
+            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Pruchase</button>
           </div>
           
       </div>
     </div>
-    {/* <Footer/> */} 
+    <Footer/> 
     </>
   )
 }
