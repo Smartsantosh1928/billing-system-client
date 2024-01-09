@@ -67,6 +67,8 @@ export function Login() {
     }
   },[])  
 
+  const refreshToken = localStorage.getItem("RefreshToken") 
+
   const validate = () => {
     let isValid = true; 
   
