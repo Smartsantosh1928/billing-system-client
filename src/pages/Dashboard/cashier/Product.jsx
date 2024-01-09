@@ -9,6 +9,7 @@ import { CgAddR } from "react-icons/cg";
 import { RxUpload } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import api from "../../../utils/Utils"
 
 
  
@@ -22,6 +23,7 @@ export function Product() {
   const [imagedata,setImageData] = useState(null);
   const [imageVal,setImageVal] = useState("");
   const navigate = useNavigate();
+  const [addProductData,getAxi]= useState({})
 
 
   
@@ -151,14 +153,28 @@ export function Product() {
       const product = { ...details, image: imageStr };
       console.log(product);
   
-      const addProductResponse = await fetch("http://localhost:3000/products/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-      const addProductData = await addProductResponse.json();
+
+      const fetchData = async () => {
+        try {
+          const response = await api.post('/add',product);
+          getAxi(response)
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching data', error);
+        }
+      };
+  
+      fetchData();
+
+
+      // const addProductResponse = await fetch("http://localhost:3000/products/add", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(product),
+      // });
+      // const addProductData = await addProductResponse.json();
      
       if (addProductData.success) {
         Swal.fire({

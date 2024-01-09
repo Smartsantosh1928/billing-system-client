@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import Otp from "./Otp";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import Loading from "react-loading";
-import { getAccessToken } from "../../utils/Utils";
+// import { getAccessToken } from "../../utils/Utils";
 
 export function Login() {
 
@@ -48,8 +48,8 @@ export function Login() {
         }
       }).then(res => {
         if(res.status == 403){
-          getAccessToken();
-          window.location.reload();
+          // getAccessToken();
+          // window.location.reload();
         }else{
           return res.json() 
         }
