@@ -3,29 +3,29 @@ import axios from 'axios';
 
 
 
-// export const getAccessToken = () => {
-//     const refreshToken = localStorage.getItem("RefreshToken")
-//     fetch("http://localhost:3000/auth/getAccessToken",{
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({refreshToken})
-//     }).then(res => res.json())
-//     .then(data => {
-//         if(data.success){
-//             console.log("Access Token refreshed");
-//             localStorage.setItem("AccessToken",data.accessToken)
-//         }
-//     }).catch(err => {
-//         console.log("Error in refreshing Access Token: ",err);
-//     })
-// }
+export const getAccessToken = () => {
+    const refreshToken = localStorage.getItem("RefreshToken")
+    fetch("http://localhost:3000/auth/getAccessToken",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({refreshToken})
+    }).then(res => res.json())
+    .then(data => {
+        if(data.success){
+            console.log("Access Token refreshed");
+            localStorage.setItem("AccessToken",data.accessToken)
+        }
+    }).catch(err => {
+        console.log("Error in refreshing Access Token: ",err);
+    })
+}
 
 
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/products', // replace with your backend API URL
+  baseURL: 'http://localhost:3000', // replace with your backend API URL
   timeout: 5000, // adjust as needed
 });
 

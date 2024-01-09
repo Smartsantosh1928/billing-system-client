@@ -21,10 +21,7 @@ export function Product() {
   const [details , setDetails] = useState({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
   const [active,setActive] = useState(false);
   const [imagedata,setImageData] = useState(null);
-  const [imageVal,setImageVal] = useState("");
   const navigate = useNavigate();
-  const [addProductData,getAxi]= useState({})
-
 
   
 
@@ -128,75 +125,73 @@ export function Product() {
   //     })
   //   })
   // }
-// const reset=()=>{
-//   document.querySelectorAll(".clear").forEach((e)=>e.value="")
-// }
+const reset=()=>{
+  document.querySelectorAll(".clear").forEach((e)=>e.value="")
+  setDetails({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let imageStr = "";
-      const uploadResponse = await fetch("http://localhost:3000/files/upload", {
-        method: "POST",
-        body: imagedata,
-      });
-      const uploadData = await uploadResponse.json();
+      // let imageStr = "";
+      // const uploadResponse = await fetch("http://localhost:3000/files/upload", {
+      //   method: "POST",
+      //   body: imagedata,
+      // });
+      // const uploadData = await uploadResponse.json();
   
-      if (uploadData.success) {
-        setImageVal(uploadData.fileName);
-        imageStr = uploadData.fileName;
-        console.log(imageStr);
-      } else {
-        throw new Error(uploadData.msg);
-      }
-  
-      const product = { ...details, image: imageStr };
-      console.log(product);
-  
-
-      const fetchData = async () => {
-        try {
-          const response = await api.post('/add',product);
-          getAxi(response)
-          console.log(response.data);
+      // if (uploadData.success) {
+      //   setImageVal(uploadData.fileName);
+      //   imageStr = uploadData.fileName;
+      //   console.log(imageStr);
+      // } else {
+        //   throw new Error(uploadData.msg);
+        // }
+        
+        
+        
+        const fetchData = async () => {
+          try {
+            let imageStr = "";
+            const responseImg = await api.post("files/upload",imagedata)
+            if (responseImg.data.success) {
+              imageStr = responseImg.data.fileName;
+              console.log(imageStr);
+            } else {
+              throw new Error(responseImg.data.msg);
+            }
+            const product = { ...details, image: imageStr };
+            console.log(product);
+              const response = await api.post('/products/add',product);
+              if (response.data.success) {
+                console.log(response);
+                console.log(response.data);
+            Swal.fire({
+              title: 'Success...!',
+              text: response.data.msg,
+              icon: 'success',
+            });
+            reset();
+          } else {
+            throw new Error(response.data.msg);
+          }
         } catch (error) {
-          console.error('Error fetching data', error);
+          Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+          });
         }
       };
-  
-      fetchData();
-
-
-      // const addProductResponse = await fetch("http://localhost:3000/products/add", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(product),
-      // });
-      // const addProductData = await addProductResponse.json();
-     
-      if (addProductData.success) {
-        Swal.fire({
-          title: 'Success...!',
-          text: addProductData.msg,
-          icon: 'success',
-        });
-        // reset();
-    
-      } else {
-        throw new Error(addProductData.msg);
-      }
+      fetchData();   
     } catch (err) {
       Swal.fire({
         title: 'Error!',
         text: err.message,
         icon: 'error',
       });
-     
     }
   };
-  
 
 
 
