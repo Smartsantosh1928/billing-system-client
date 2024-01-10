@@ -2,6 +2,7 @@ import React from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
 import img3 from "../../../public/bill.png"
+import img4 from "../../../public/add.png"
 import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,CheckIcon,CheckCircleIcon,ComputerDesktopIcon,SquaresPlusIcon,CalendarDaysIcon } from "@heroicons/react/24/solid";
 import Footer from './Footer'
 
@@ -58,6 +59,14 @@ const Home = () => {
       <h1 className='text-3xl font-semibold text-blue-300'>All-in-one small business billing, invoicing, and accounting software</h1>
       <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
     </div>
+
+    <div>
+
+      <div></div>
+
+    </div>
+
+
     <div className='w-full flex justify-center'>
        <div className='h-[300px] w-[900px] rounded-3xl bg-gray-100'>
           <p className='text-lg font-bold py-8 text-center'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
