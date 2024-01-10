@@ -63,68 +63,6 @@ export function Product() {
     })
     console.log(details)
   };
-
-
-  // const handleSubmit=(e)=>{
-  //   e.preventDefault();
-  //   let imageStr = ""
-  //   fetch("http://localhost:3000/files/upload",{
-  //     method: "POST",
-  //     body: imagedata
-  //   }).then(res => res.json())
-  //   .then(data => {
-  //     if(data.success){
-  //      setImageVal(data.fileName)
-  //      imageStr = data.fileName
-  //      console.log(imageStr);
-  //     }
-  //     else{
-  //       Swal.fire({
-  //         title: 'Error!',
-  //         text: data.msg,
-  //         icon: 'error',
-  //       })
-  //     }
-  //   }).catch(err => {
-  //     Swal.fire({
-  //       title: 'Error!',
-  //         text: err,
-  //         icon: 'error',
-  //     })
-  //   })
-
-  //   const product ={...details,image:imageStr};
-  //   console.log(product);
-  //   fetch("http://localhost:3000/products/add",{
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(product)
-  //   }).then(res => res.json())
-  //   .then(data => {
-  //     if(data.success){
-  //       Swal.fire({
-  //         title: 'Success...!',
-  //         text: data.msg,
-  //         icon: 'success',
-  //       })
-  //     }
-  //     else{
-  //       Swal.fire({
-  //         title: 'Error!',
-  //         text: data.msg,
-  //         icon: 'error',
-  //       })
-  //     }
-  //   }).catch(err => {
-  //     Swal.fire({
-  //       title: 'Error!',
-  //         text: err,
-  //         icon: 'error',
-  //     })
-  //   })
-  // }
 const reset=()=>{
   document.querySelectorAll(".clear").forEach((e)=>e.value="")
   setDetails({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
@@ -133,23 +71,6 @@ const reset=()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // let imageStr = "";
-      // const uploadResponse = await fetch("http://localhost:3000/files/upload", {
-      //   method: "POST",
-      //   body: imagedata,
-      // });
-      // const uploadData = await uploadResponse.json();
-  
-      // if (uploadData.success) {
-      //   setImageVal(uploadData.fileName);
-      //   imageStr = uploadData.fileName;
-      //   console.log(imageStr);
-      // } else {
-        //   throw new Error(uploadData.msg);
-        // }
-        
-        
-        
         const fetchData = async () => {
           try {
             let imageStr = "";
@@ -166,23 +87,23 @@ const reset=()=>{
               if (response.data.success) {
                 console.log(response);
                 console.log(response.data);
-            Swal.fire({
-              title: 'Success...!',
-              text: response.data.msg,
-              icon: 'success',
-            });
-            reset();
-          } else {
-            throw new Error(response.data.msg);
-          }
-        } catch (error) {
-          Swal.fire({
-            title: 'Error!',
-            text: error.message,
-            icon: 'error',
-          });
-        }
-      };
+                Swal.fire({
+                  title: 'Success...!',
+                  text: response.data.msg,
+                  icon: 'success',
+                });
+                reset();
+              } else {
+                throw new Error(response.data.msg);
+              }
+            } catch (error) {
+              Swal.fire({
+                title: 'Error!',
+                text: error.message,
+                icon: 'error',
+              });
+            }
+          };
       fetchData();   
     } catch (err) {
       Swal.fire({

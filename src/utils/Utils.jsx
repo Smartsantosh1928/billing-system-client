@@ -50,6 +50,9 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    console.log('====================================');
+    console.log(originalRequest);
+    console.log('====================================');
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {

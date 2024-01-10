@@ -15,6 +15,7 @@ import Otp from "./Otp";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import Loading from "react-loading";
 import { getAccessToken } from "../../utils/Utils";
+import api from "../../utils/Utils";
 
 export function Login() {
 
@@ -38,34 +39,59 @@ export function Login() {
 
   const accessToken = localStorage.getItem("AccessToken");
 
-  useEffect(() => {
-    if(accessToken){
-      fetch("http://localhost:3000/auth/verifyUser",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + accessToken
-        }
-      }).then(res => {
-        if(res.status == 403){
-          getAccessToken();
-          window.location.reload();
-        }else{
-          return res.json() 
-        }
-      })
-      .then(data => {
-        if(data.success)
+  // useEffect(() => {
+  //   if(accessToken){
+  //     fetch("http://localhost:3000/auth/verifyUser",{
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Authorization": "Bearer " + accessToken
+  //       }
+  //     }).then(res => {
+  //       if(res.status == 403){
+  //         getAccessToken();
+  //         window.location.reload();
+  //       }else{
+  //         return res.json() 
+  //       }
+  //     })
+  //     .then(data => { 
+  //       if(data.success)
+  //         navigate("/dashboard/home")
+  //     }).catch(err => {
+  //       Swal.fire({
+  //         title: 'Error!',
+  //         text: "Something went wrong",
+  //         icon: 'error',
+  //       })
+  //     })
+  //   }
+  // },[])  
+
+
+  useEffect(()=>{
+    if(accessToken)
+    {
+      const fetchData = async ()=>{
+        const res = await api.post("/auth/verifyUser")
+
+        if(res.data.success)
+        {
           navigate("/dashboard/home")
-      }).catch(err => {
-        Swal.fire({
-          title: 'Error!',
-          text: "Something went wrong",
-          icon: 'error',
-        })
-      })
+        }
+        else
+        {
+          Swal.fire({
+            title: 'Error!',
+            text: "Something went wrong",
+            icon: 'error',
+          })
+        }
+      }
+      fetchData()
     }
-  },[])  
+    
+  },[])
 
   const refreshToken = localStorage.getItem("RefreshToken") 
 
@@ -123,6 +149,37 @@ export function Login() {
   const handleSubmit=(e)=>{
     setLoading(!loading)
     e.preventDefault();
+
+
+    // const fetchData = async ()=>{
+
+    //   const res = await api.post("/auth/login",details)
+
+    //   if(res.data.success)
+    //   {
+    //     setLoading(loading)
+    //     localStorage.setItem("AccessToken",res.data.accessToken)
+    //     localStorage.setItem("RefreshToken",res.data.refreshToken)
+    //     localStorage.setItem("Role",res.data.role)
+    //     navigate("/dashboard/home")
+    //   }
+    //   else if(res.data.msg=="User not verified!"){
+    //     setLoading(loading)
+    //     handleOpen()
+    //   }
+    //   else{
+    //     setLoading(loading)
+    //     Swal.fire({
+    //       title: 'Error!',
+    //       text: res.data.msg,
+    //       icon: 'error',
+    //     })
+    //     setdetails({email :"",password:""})
+    //   }
+    // }
+
+    // fetchData()
+
     fetch("http://localhost:3000/auth/login",{
       method: "POST",
       headers: {
