@@ -1,4 +1,4 @@
-import { PencilIcon,ExclamationTriangleIcon,UserGroupIcon,CurrencyRupeeIcon,ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { PencilIcon,ExclamationTriangleIcon,UserGroupIcon,CurrencyRupeeIcon,ShoppingCartIcon} from "@heroicons/react/24/solid";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
