@@ -15,6 +15,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import Products from "./Product"
+import api from '../../../utils/Utils';
 
 import { BrowserRouter as Link, Route } from 'react-router-dom';
  
@@ -30,28 +31,39 @@ export function AllProducts() {
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
 
-  useEffect(()=>{
-    fetch("http://localhost:3000/products/",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },body:JSON.stringify({page})
-    }).then(res => res.json())
-    .then(data =>{
-        setData(data.Products)
-        setPages({
-          totalPages: data.totalPages,
-          currentPage: data.currentPage
-        })
-      })
-    .catch(err => {
-      Swal.fire({
-        title: 'Error!',
-          text: err,
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.post("/products/", { page });
+        if (response.data) {
+          console.log('====================================');
+          console.log(response);
+          console.log('====================================');
+          setData(response.data.Products);
+          setPages({
+            totalPages: response.data.totalPages,
+            currentPage: response.data.currentPage
+          });
+        } else {
+          throw new Error(response.data.msg);
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: error.message,
           icon: 'error',
-      })
-    })},[reload,page]);
-    console.log(dataa);
+        });
+      }
+    };
+  
+    fetchData();
+  }, [reload, page]);
+  
+
+
+  console.log(dataa);
   const handleDelete = (_id) => {
     Swal.fire({
       title: 'Warning!',
@@ -61,22 +73,23 @@ export function AllProducts() {
       cancelButtonText: "No",
       showCancelButton: true,
       showCloseButton: true
-    }).then((data) => {
+    }).then(async (data) => {
       if(data.isConfirmed){
         try{
-          fetch(`http://localhost:3000/products/delete/${_id}`, {
-          method: 'DELETE'
-        }).then(res=>{
-            res.json()
+
+          const res = await api.delete(`/products/delete/${_id}`)
+          if(res.data.success)
+          {
             setReload(!reload)
-          }).catch(err => {
-          Swal.fire({
-            title: 'Error!',
-              text: err,
+          }
+          else
+          {
+              Swal.fire({
+              title: 'Error!',
+              text: res.data.msg,
               icon: 'error',
-          })
-        })
-        console.error('Error deleting record:', error);
+            })
+          }
         }
         catch(error)
         {
@@ -106,23 +119,6 @@ export function AllProducts() {
         </div>
         
       </div>
-      {/* <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <Tabs value="all" className="w-full md:w-max">
-          <TabsHeader>
-            {TABS?.map(({ label, value }) => (
-              <Tab key={value} value={value}>
-                &nbsp;&nbsp;{label}&nbsp;&nbsp;
-              </Tab>
-            ))}
-          </TabsHeader>
-        </Tabs>
-        <div className="w-full md:w-72">
-          <Input
-            label="Search"
-            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-          />
-        </div>
-      </div> */}
     </CardHeader>
     <CardBody className="px-0">
       <table className="w-full min-w-max table-auto text-left">
