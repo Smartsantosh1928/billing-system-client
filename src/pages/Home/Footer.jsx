@@ -1,9 +1,11 @@
 import React from 'react'
 import img from '../../../public/share-idea.svg'
 import { BiLogoFacebook,BiLogoTwitter,BiLogoInstagram,BiLogoWhatsapp,BiCopyright } from "react-icons/bi"
+import { PiShootingStarDuotone } from "react-icons/pi";
 import {FaXTwitter} from "react-icons/fa6"
-import {HeartIcon } from "@heroicons/react/24/solid";
+import {HeartIcon,StarIcon} from "@heroicons/react/24/solid";
 
+const features=["High security","User Friendly","Accuracy","Inventory Tracking"];
 const Footer = () => {
   return (
     <>
@@ -41,20 +43,27 @@ const Footer = () => {
       </div>
     
    </div>
-   <div className='w-full flex justify-center gap-8 p-6'>
-    <div className='w-[25%] h-[350px] bg-gray-300'>
+   <div className='w-full h-[300px] flex justify-center gap-8 p-6 bg-black'>
+    <div className='w-[25%] '>
+        <h1 className='text-base font-medium border-b-[1px] pb-2  m-12 text-white '>FEATURES</h1>
+  
+        <div className='m-12 -mt-5  '>
+          {features.map((fe)=>{
+             return   <p className='flex pb-1 text-base hover:translate-x-3 cursor-pointer hover:transform hover:duration-300 text-orange-400 '>  <PiShootingStarDuotone className='h-7 w-7 px-1'/>{fe}</p>
+          })}
+          
+        </div>
+    </div>
+    <div className='w-[25%] bg-gray-300'>
 
     </div>
-    <div className='w-[25%] h-[350px] bg-gray-300'>
-
-    </div>
-    <div className='w-[25%] h-[350px] bg-gray-300'>
+    <div className='w-[25%]  bg-gray-300'>
       <h1 className='m-14 text-lg font-medium tracking-wide'></h1>
       
     </div>
     
    </div>
-   <div className='w-full flex justify-center items-center h-8 bg-black'>
+   <div className='w-full flex justify-center items-center h-8 bg-black border-t-[1px]'>
     <p className='text-white text-sm tracking-widest pr-1'>copyrigth </p><BiCopyright className='text-white'/>
     <p className='text-white text-sm tracking-widest pl-1 pr-1'>2024 ZiryTech</p>
     <HeartIcon className='h-4 w-4 hover: text-red-500'/>
