@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
 import img3 from "../../../public/bill.png"
@@ -7,6 +7,8 @@ import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon,Chec
 import Footer from './Footer'
 
 const Home = () => {
+
+    const [visible,Setvisible]=useState(flase);
     const button = 'h-10 w-24 bg-blue-300 rounded-3xl text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'
   return (
     <>
@@ -98,7 +100,7 @@ const Home = () => {
           </div>
         </div>
     </div>
-
+ <section id='payment'>
     <div className='w-full flex items-center justify-evenly p-10'>
       <div className= 'w-[30%] mr-14'>
         <h1 className='text-3xl py-7 px-3 hover:text-blue-400'>Our products</h1>
@@ -142,7 +144,8 @@ const Home = () => {
           
       </div>
     </div>
-    <Footer/> 
+    </section>
+    <Footer/>
     </>
   )
 }
