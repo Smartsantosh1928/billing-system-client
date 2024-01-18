@@ -60,16 +60,22 @@ const Home = () => {
       <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
     </div>
 
-    <div>
+    <div className='flex h-full w-full'>
 
-      <div></div>
-
+      <div className='w-[50%] h-96  p-5 border-2 shadow-lg m-10 flex'> 
+        <img src={img4} className='h-full w-full' alt="" />
+        
+      </div>
+      <div className='  justify-center w-[20%] h-full items-center m-20 '>
+          <h1 className='text-xl font-semibold text-blue-400'>Add products</h1>
+          <p className='text-base text-justify text-gray-600'>Add your products with convenient image and use it for billing.</p>
+        </div>
     </div>
 
 
     <div className='w-full flex justify-center'>
        <div className='h-[300px] w-[900px] rounded-3xl bg-gray-100'>
-          <p className='text-lg font-bold py-8 text-center'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
+          <p className='text-lg font-bold py-8 text-center text-orange-600'>Looking for a stand-alone recurring billing solution? Try Our Subscriptions.</p>
           <div className='flex'>
             <div className='w-[70%] flex flex-wrap pl-8'>
               <div className='w-1/2 p-3 flex'>
