@@ -3,14 +3,12 @@ import{UserCircleIcon,XMarkIcon} from "@heroicons/react/24/solid";
 import google from "../../../public/google.png"
 import per from "../../../public/person.svg"
 
-export function NewLogin() {
+export function NewSignin() {
   return (
    <>
    <div className=' w-full  h-screen flex items-center justify-center '>
           <div className='flex justify-around h-[70%] p-12 rounded-lg w-[60%] shadow-2xl'>
-               <div className='h-[350px] w-[400px] px-4'>
-                    <img src={per} className='' alt="" />
-               </div>
+              
                <div className='flex flex-col items-center justify-center h-[380px]  w-[300px] rounded-xl  bg-white shadow-2xl'>  
                     <h1 className='text-orange-400 text-lg text-center font-semibold '>Welcome</h1>
                     <div className=' h-[35%] w-[70%] '>
@@ -34,14 +32,19 @@ export function NewLogin() {
                          <p className='text-sm cursor-pointer'>Don't have an account ?</p>
                          <p className='text-sm text-orange-400 hover:text-blue-400 hover:cursor-pointer font-bold px-1' >Signin</p>
                     </div>
+                    
+               </div>
+               <div className='h-[400px] w-[350px] px-4'>
+                    <img src={per} className='' alt="" />
                </div>
                <div className='-m-8 pl-10'>
                     <XMarkIcon className='w-8 h-8 cursor-pointer hover:bg-gray-300 transform duration-300 hover:rounded-md p-1' />
                </div>
+             
           </div>
    </div>
    </>
   )
 }
 
-export default NewLogin
+export default NewSignin
