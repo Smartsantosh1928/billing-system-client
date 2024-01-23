@@ -15,12 +15,12 @@ export function NewLogin() {
                     <h1 className='text-orange-400 text-lg text-center font-semibold '>Welcome</h1>
                     <div className=' h-[35%] w-[70%] '>
                          <span className='text-sm text-gray-600'>Email</span>
-                         <input type="text" name='email' placeholder='Enter Email' className='text-sm cursor-pointer w-full h-[25px] mb-3 border-[2px]  border-gray-500  rounded-full placeholder:text-sm placeholder:indent-2  indent-2 ' />
+                         <input type="text" name='email' placeholder='Enter Email' className='text-sm cursor-pointer w-full h-[25px] mb-3 border-[2px]  border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2  indent-2 ' />
                          <span className='text-sm text-gray-600'>Password</span>
-                         <input type="text" placeholder='Enter PassWord' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-full placeholder:text-sm placeholder:indent-2 indent-2'/> 
+                         <input type="text" placeholder='Enter Password' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2 indent-2'/> 
                     </div>
                     <div >
-                         <button className=' h-7 w-24 bg-orange-400 rounded-3xl text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button> 
+                         <button className=' h-7 w-24 bg-orange-400 rounded-sm text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button> 
                     </div>
                     <div className='flex items-center pl-2 w-[70%] pt-3'>
                          <hr className='w-[40%] border-1 border-gray-500 ' />
