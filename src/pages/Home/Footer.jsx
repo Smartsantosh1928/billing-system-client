@@ -4,6 +4,7 @@ import { BiLogoFacebook,BiLogoTwitter,BiLogoInstagram,BiLogoWhatsapp,BiCopyright
 import { PiShootingStarDuotone } from "react-icons/pi";
 import {FaXTwitter} from "react-icons/fa6"
 import {HeartIcon,StarIcon,ArrowRightIcon} from "@heroicons/react/24/solid";
+import {Button}from '@material-tailwind/react'
 
 const features=["High security","User Friendly","Accuracy","Inventory Tracking"];
 const Footer = () => {

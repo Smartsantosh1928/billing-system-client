@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button}from '@material-tailwind/react'
 import { CheckCircleIcon,ComputerDesktopIcon,SquaresPlusIcon,CalendarDaysIcon } from "@heroicons/react/24/solid";
 
 const Payment = () => {
@@ -16,33 +17,36 @@ const Payment = () => {
             <ComputerDesktopIcon className='w-10 text-orange-500'/>
             <h1 className='text-xl'>Free Trail</h1>
             <h1 className='text-3xl font-semibold'>FREE</h1>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button>
+            <Button variant='gradient'>Purchase</Button>
+            {/* <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button> */}
           </div>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border-2  hover:border-orange-500  gap-6 shadow-xl '>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2  hover:border-orange-500  gap-6 shadow-xl relative overflow-hidden'>
             <SquaresPlusIcon className='w-10 text-orange-500'/>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center '>
               <h1 className='text-xl'>Monthly</h1>
-              <span className='bg-light-green-500 rounded-lg font-semibold p-1 -tracking-tighter'>Save70%</span>
+              <div className='flex items-end justify-end bg-orange-500 w-40 h-40 rounded-full font-bold p-2 -tracking-tighter text-xs absolute -top-20 -left-20 '><span className='-translate-y-6 -translate-x-6'>Save <br /> 70%</span></div>
             </div>
             <div className='flex'>
               <span className='pt-[10px] font-medium'>Rs</span>
               <h1 className='text-3xl pl-1 pr-1 font-semibold'>199.00</h1>
               <span className='pt-[10px]'>/mo</span>
             </div>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button>
+            <Button variant='gradient' >Purchase</Button>
+            {/* <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button> */}
           </div>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 border-orange-500 gap-6 shadow-xl '>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 border-orange-500 gap-6 shadow-xl relative overflow-hidden'>
             <CalendarDaysIcon className='w-10 text-orange-500'/>
             <div className='flex flex-col items-center'>
               <h1 className='text-xl'>Yearly</h1>
-              <span className='bg-light-green-500 rounded-lg font-semibold p-1 -tracking-tighter'>Save50%</span>
+              <div className='flex items-end justify-end bg-orange-500 w-40 h-40 rounded-full font-bold p-2 -tracking-tighter text-xs absolute -top-20 -left-20 '><span className='-translate-y-6 -translate-x-6'>Save <br /> 50%</span></div>
             </div>
             <div className='flex'>
               <span className='pt-[10px] font-medium'>Rs</span>
               <h1 className='text-3xl pl-1 pr-1 font-semibold'>1,999.00</h1>
               <span className='pt-[10px]'>/yr</span>
             </div>
-            <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Pruchase</button>
+            <Button variant='gradient'>Purchase</Button>
+            {/* <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Pruchase</button> */}
           </div>
           
       </div>

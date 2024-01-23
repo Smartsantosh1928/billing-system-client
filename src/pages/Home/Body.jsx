@@ -1,6 +1,7 @@
 import React from 'react'
 import img1 from "../../../public/hero-l.svg"
 import img2 from "../../../public/hero-r.svg"
+import {Button}from '@material-tailwind/react'
 import { ShieldCheckIcon,UserGroupIcon,ShoppingCartIcon,CubeTransparentIcon} from "@heroicons/react/24/solid";
 
 

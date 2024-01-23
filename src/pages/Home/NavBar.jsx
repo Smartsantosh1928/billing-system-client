@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import NewLogin from '../Auth/NewLogin'
 import NewSignin from '../Auth/NewSignin'
+import {Button}from '@material-tailwind/react'
+
 
 const NavBar = () => {
     const button = 'h-10 w-24 bg-blue-300 rounded-3xl text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'
@@ -11,6 +13,9 @@ const NavBar = () => {
     const handleSignin=()=>{
         setSignin(!signin)
     }
+    const handleLogin=()=>{
+        setLogin(!login)
+    }
     return (
     <>
     <div className=' w-full h-[100px] flex '>
@@ -19,11 +24,14 @@ const NavBar = () => {
            <h1 className='text-xl font-extrabold'>Ziry Tech</h1>
         </div>
         <div className='flex w-full justify-end items-center gap-2  pr-5'> 
-            <button onClick={handleSignin} className={button}>Signin</button>
-            <button className={button}>Signup</button>
+            {/* <button onClick={handleSignin} className={button}>Signin</button>
+            <button className={button}>Signup</button> */}
+            <Button variant="outlined" onClick={handleSignin} >Signin</Button>
+            <Button variant="gradient" onClick={handleLogin} className={""}>Signup</Button>
         </div>
     </div>
-    {signin&&<NewSignin />}
+    {signin&&<NewSignin handleOpen={handleSignin} />}
+    {login&&<NewLogin handleOpen={handleLogin} />}
     </>
   )
 }

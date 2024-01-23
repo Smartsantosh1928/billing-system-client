@@ -2,14 +2,16 @@ import React from 'react'
 import {CheckIcon } from "@heroicons/react/24/solid";
 import img3 from "../../../public/bill.png"
 import img4 from "../../../public/add.png"
+import {Button}from '@material-tailwind/react'
 
 
 const Features = () => {
   return (
     <>
     <div className='flex flex-col justify-center items-center p-10'>
-      <h1 className='text-3xl font-semibold text-blue-300'>All-in-one small business billing, invoicing, and accounting software</h1>
-      <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button>
+      <h1 className='text-3xl font-semibold text-blue-300 md:pb-4'>All-in-one small business billing, invoicing, and accounting software</h1>
+      {/* <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Explore</button> */}
+      <Button variant='gradient' className=''>Explore</Button>
     </div>
 
     <div className='flex h-full w-full'>
@@ -43,7 +45,8 @@ const Features = () => {
               <CheckIcon className='w-5 h-5 text-blue-300'/><p className='font-medium ml-2'>Track subscription metrics</p>
               </div>
               <a href="#features" className='scroll-smooth transform duration-300' >
-              <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Learn More</button>
+              {/* <button className='m-5 h-10 w-44 bg-blue-300 rounded-sm text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300'>Learn More</button> */}
+              <Button variant='gradient' className='m-5 '>Learn More</Button>
               </a>
             </div> 
             <div className='pr-5'>
