@@ -2,6 +2,7 @@ import React from 'react'
 import{UserCircleIcon,XMarkIcon} from "@heroicons/react/24/solid";
 import google from "../../../public/google.png"
 import per from "../../../public/person.svg"
+import { Input,Button } from "@material-tailwind/react";
 import {
      Dialog
    } from "@material-tailwind/react";
@@ -17,14 +18,17 @@ export function NewLogin({handleOpen}) {
               </div>
               <div className='flex flex-col mt-10 items-center justify-center h-[400px]  w-[320px] rounded-xl  bg-white shadow-2xl'>  
                    <h1 className='text-orange-400 text-lg text-center font-semibold '>Welcome</h1>
-                   <div className=' h-[35%] w-[70%] '>
-                        <span className='text-sm text-gray-600'>Email</span>
-                        <input type="text" name='email' placeholder='Enter Email' className='text-sm cursor-pointer w-full h-[25px] mb-3 border-[2px]  border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2  indent-2 ' />
-                        <span className='text-sm text-gray-600'>Password</span>
-                        <input type="text" placeholder='Enter Password' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2 indent-2'/> 
+                   <div className=' h-[30%] w-[70%]'>
+                         <Input label="Email" className="mb-3" />
+                        {/* <span className='text-sm text-gray-600'>Email</span> */}
+                        {/* <input type="text" name='email' placeholder='Enter Email' className='text-sm cursor-pointer w-full h-[25px] mb-3 border-[2px]  border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2  indent-2 ' /> */}
+                        {/* <span className='text-sm text-gray-600'>Password</span>
+                        <input type="text" placeholder='Enter Password' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2 indent-2'/>  */}
+                          <Input label="Password" className="" />
                    </div>
                    <div >
-                        <button className=' h-7 w-24 bg-orange-400 text-gray-900 rounded-sm text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button> 
+                        <Button>Login</Button>
+                        {/* <button className=' h-7 w-24 bg-orange-400 text-gray-900 rounded-sm text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button>  */}
                    </div>
                    <div className='flex items-center pl-2 w-[70%] pt-3'>
                         <hr className='w-[40%] border-1 border-gray-500 ' />
@@ -36,7 +40,7 @@ export function NewLogin({handleOpen}) {
                    </div>
                    <div className='flex  w-[70%] '>
                         <p className='text-sm cursor-pointer'>Don't have an account ?</p>
-                        <p className='text-sm text-orange-400 hover:text-blue-400 hover:cursor-pointer font-bold px-1' >Signin</p>
+                        <p className='text-sm text-orange-400 hover:text-blue-400 hover:cursor-pointer font-bold px-1' >Signup</p>
                    </div>
               </div>
               <div className='-m-8 pl-10'>

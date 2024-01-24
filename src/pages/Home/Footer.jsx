@@ -66,8 +66,8 @@ const Footer = () => {
     
    </div>
    <div className='w-full flex justify-center items-center h-8 bg-gray-900 border-t-[1px]'>
-    <p className='text-white text-sm tracking-widest pr-1'>copyrigth </p><BiCopyright className='text-white'/>
-    <p className='text-white text-sm tracking-widest pl-1 pr-1'>2024 ZiryTech</p>
+    <p className='text-white text-sm tracking-widest pr-1 cursor-pointer'>copyright </p><BiCopyright className='text-white'/>
+    <p className='text-white text-sm tracking-widest pl-1 pr-1 ' >2024 ZiryTech</p>
     <HeartIcon className='h-4 w-4 hover: text-red-500'/>
    </div>
     </>
