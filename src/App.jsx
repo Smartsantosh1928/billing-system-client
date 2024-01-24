@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import { Login, Signup , NewLogin,NewSignin} from "@/pages/Auth";
 import { Demo } from "@/components"
 import Home from "././pages/Home/Home"
+import "./App.css"
 
 function App() {
   return (

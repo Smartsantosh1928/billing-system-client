@@ -5,7 +5,7 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      'pop': ['Poppins', 'sans-serif'],
+      'san': ['Open Sans', 'sans-serif'],
     },
     extend: {},
   },
