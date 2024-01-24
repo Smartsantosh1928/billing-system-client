@@ -11,11 +11,11 @@ export function NewLogin({handleOpen}) {
      <>
      <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleOpen}>
      <div className=' w-full  h-screen flex items-center justify-center '>
-         <div className='flex justify-around h-[70%] p-12 rounded-lg w-[60%] shadow-2xl bg-white'>
-              <div className='h-[350px] w-[400px] px-4'>
+         <div className='flex  justify-around h-[75%] p-12 rounded-lg w-[70%] shadow-2xl bg-white'>
+              <div className='h-[400px] w-[400px] mt-10'>
                    <img src={per} className='' alt="" />
               </div>
-              <div className='flex flex-col items-center justify-center h-[380px]  w-[300px] rounded-xl  bg-white shadow-2xl'>  
+              <div className='flex flex-col mt-10 items-center justify-center h-[400px]  w-[320px] rounded-xl  bg-white shadow-2xl'>  
                    <h1 className='text-orange-400 text-lg text-center font-semibold '>Welcome</h1>
                    <div className=' h-[35%] w-[70%] '>
                         <span className='text-sm text-gray-600'>Email</span>
@@ -24,7 +24,7 @@ export function NewLogin({handleOpen}) {
                         <input type="text" placeholder='Enter Password' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2 indent-2'/> 
                    </div>
                    <div >
-                        <button className=' h-7 w-24 bg-orange-400 rounded-sm text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button> 
+                        <button className=' h-7 w-24 bg-orange-400 text-gray-900 rounded-sm text-sm hover:border-2 font-semibold transform duration-300 hover:bg-transparent hover:border-orange-400' >Login</button> 
                    </div>
                    <div className='flex items-center pl-2 w-[70%] pt-3'>
                         <hr className='w-[40%] border-1 border-gray-500 ' />
