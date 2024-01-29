@@ -17,14 +17,14 @@ export function NewLogin({handleOpen}) {
                    <img src={per} className='' alt="" />
               </div>
               <div className='flex flex-col mt-10 items-center justify-center h-[400px]  w-[320px] rounded-xl  bg-white shadow-2xl'>  
-                   <h1 className='text-orange-400 text-lg text-center font-semibold '>Welcome</h1>
-                   <div className=' h-[30%] w-[70%]'>
-                         <Input label="Email" className="mb-3" />
+                   <h1 className='text-orange-400 text-xl text-center font-bold tracking-wide '>Welcome</h1>
+                   <div className=' h-[30%] w-[70%] flex flex-col gap-2 pt-3'>
+                         <Input label="Email" type='email' className="" />
                         {/* <span className='text-sm text-gray-600'>Email</span> */}
                         {/* <input type="text" name='email' placeholder='Enter Email' className='text-sm cursor-pointer w-full h-[25px] mb-3 border-[2px]  border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2  indent-2 ' /> */}
                         {/* <span className='text-sm text-gray-600'>Password</span>
                         <input type="text" placeholder='Enter Password' className=' cursor-pointer w-full h-[25px] text-sm border-2 border-gray-500  rounded-sm placeholder:text-sm placeholder:indent-2 indent-2'/>  */}
-                          <Input label="Password" className="" />
+                          <Input label="Password" type='password' className="" />
                    </div>
                    <div >
                         <Button>Login</Button>
