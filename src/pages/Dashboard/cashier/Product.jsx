@@ -118,7 +118,7 @@ const reset=()=>{
 
 return (
   <>
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col  items-center justify-center gap-4">
       <div className="flex flex-col items-center justify-center gap-4 "> 
       <Typography variant="h4" color="blue-gray">
         Add Products
@@ -128,7 +128,7 @@ return (
       </Typography>
       </div>
 
-        <form className="grid md:grid-cols-2 lg:grid-cols-3 w-full gap-4 sm:grid-cols-1 mb-4">
+        <form className="grid md:grid-cols-2 lg:grid-cols-2 w-[60%] gap-4 sm:grid-cols-1 mb-4">
           <div className="flex flex-col gap-4">
             <Typography variant="h6" color="blue-gray" className="-mb-3">
               Name
@@ -160,7 +160,7 @@ return (
             />
           </div>
 
-          <div className="flex flex-col gap-4">
+          {/* <div className="flex flex-col gap-4">
             <Typography variant="h6" color="blue-gray" className="-mb-3">
               Measurement
             </Typography>
@@ -188,7 +188,7 @@ return (
                 className: "before:content-none after:content-none",
               }}
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col gap-4">
             <Typography variant="h6" color="blue-gray" className="-mb-3">
@@ -238,13 +238,13 @@ return (
             />
           </div>
 
-          <div className="flex flex-row mt-8 gap-2">
+          {/* <div className="flex flex-row mt-8 gap-2">
             <label className=" flex flex-row h-10 w-36 gap-2 justify-center items-center text-uppercase text-white text-center bg-black hover:bg-gray-700 py-2 px-4 rounded cursor-pointer"> Upload File
             <RxUpload className="w-4 h-4"/>
             <input type="file" accept="image/*" name='file' onChange={handleFileUpload} className='clear hidden' />
             </label>
             {imageUrl && <img src={imageUrl} alt="Selected Image" className='h-10 w-10' />}
-          </div>
+          </div> */}
 
           <div className="flex flex-col mt-8 gap-4">
             <Switch

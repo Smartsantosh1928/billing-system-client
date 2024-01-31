@@ -18,6 +18,7 @@ import Products from "./Product"
 import api from '../../../utils/Utils';
 
 import { BrowserRouter as Link, Route } from 'react-router-dom';
+import UpdateProducts from './UpdateProducts';
  
 const TABLE_HEAD = ["Name","BarCode","Stock","LowStock","Price","Edit"];
 
@@ -30,6 +31,8 @@ export function AllProducts() {
   const [pages, setPages] = useState({});
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false)
+  const [update ,setUpdate] =  useState(false)
+  const [editData ,setEditData] =  useState({})
 
 
 
@@ -100,12 +103,17 @@ export function AllProducts() {
   };
   
   const handleEdit = (_id)=>{
-      const edit = dataa.find((obj)=>obj._id===_id)
-      
+    const edit = dataa.find((obj)=>obj._id===_id)
+    setEditData(edit)
+    console.log('====================================');
+    console.log(edit);
+    console.log('====================================');
+    setUpdate(!update)
   }
 
 
   return (
+    <>
     <Card className="h-full w-full">
     <CardHeader floated={false} shadow={false} className="rounded-none">
       <div className="mb-8 flex items-center justify-between gap-8">
@@ -244,7 +252,8 @@ export function AllProducts() {
       </div>
     </CardFooter>
   </Card>
- 
+  {update&&<UpdateProducts handleOpen={handleEdit} edit={editData}/>}
+    </>
 );
 }
   
