@@ -25,7 +25,7 @@ import api from '../../../utils/Utils';
 
 
 
-const TABLE_HEAD = ["SNO","ItemCode ","ProductName","Quantity", "UnitePrice", "TotalPrice", "Delete"];
+const TABLE_HEAD = ["SNO","ProductName","Quantity", "UnitePrice", "TotalPrice", "Delete"];
  
 const TABLE_ROWS = [
   {
@@ -108,7 +108,7 @@ const TABLE_ROWS = [
         console.log('====================================');
         console.log(response);
         console.log('====================================');
-        // setDetails(response.data.Products);
+        setDetails(response.data.products);
       } else {
         throw new Error(response.data.msg);
       }
@@ -152,7 +152,8 @@ const filteredProducts = details.filter((product) =>
 
   const handleProductSelection = (product) => {
     setSearchTerm(product.name);
-    setPrice(product.price);
+    var input = document.querySelector('#price');
+    input.value=product.price
     setShowDropdown(false); 
     
   };
@@ -162,6 +163,22 @@ const filteredProducts = details.filter((product) =>
   };
   const handleClickInside=()=>{
     setShowDropdown(!showDropdown); 
+  }
+  let data=[{}];
+  const addData=()=>{
+    var name=document.querySelector("#pname");
+    var quantity=document.querySelector("#quantity");
+    var price=document.querySelector("#price");
+
+
+     data=[
+    {
+      pname:name.value,
+      quantity:quantity.value,
+      price:price.value,
+      tprice:quantity*price
+    }
+    ]
   }
 
 
@@ -178,9 +195,9 @@ const filteredProducts = details.filter((product) =>
           </Typography>
         </div>
     <div className="flex justify-center">
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" autoComplete="off">
+      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 gap" autoComplete="off">
         <div className="mb-1 flex flex-col gap-6"  >
-          <Input name="pname" label="Product Name"  onFocus={handleClickOutside}  value={searchTerm} onChange={handleSearch} color="blue" />
+          <Input name="pname" id="pname" label="Product Name"  onFocus={handleClickOutside}  value={searchTerm} onChange={handleSearch} color="blue" />
         </div>
 
         { showDropdown && (
@@ -198,12 +215,12 @@ const filteredProducts = details.filter((product) =>
           </ul>
         )}
         <div className="mb-1 flex flex-col gap-1">
-        <Input name="quantity" label="Quantity" onChange={handleChange} color="blue" />
-        <Input name="price" label="Price"  onChange={handleChange} color="blue" />
+        <Input name="quantity" id="quantity" label="Quantity" onChange={handleChange} color="blue" />
+        <Input name="price" id="price" label="Price"   onChange={handleChange} color="blue" />
         </div>
       
         <div className="flex justify-center items-center" >
-        <Button className="mt-6 w-80" color="black" fullWidth>
+        <Button className="mt-6 w-80" color="black" onClick={addData} fullWidth>
             Add
         </Button>
       </div>
@@ -235,17 +252,13 @@ const filteredProducts = details.filter((product) =>
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {data.map(
               (
                 {
-                  img,
-                  name,
-                  amount,
-                  date,
-                  status,
-                  account,
-                  accountNumber,
-                  expiry,
+                  pname,
+                  quantity,
+                  price,
+                  tprice
                 },
                 index,
               ) => {
@@ -258,18 +271,13 @@ const filteredProducts = details.filter((product) =>
                   <tr key={name}>
                     <td className={classes}>
                       <div className="flex items-center gap-3">
-                        <Avatar
-                          src={img}
-                          alt={name}
-                          size="md"
-                          className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
-                        />
+                       
                         <Typography
                           variant="small"
                           color="blue-gray"
                           className="font-bold"
                         >
-                          {name}
+                          {pname}
                         </Typography>
                       </div>
                     </td>
@@ -279,7 +287,7 @@ const filteredProducts = details.filter((product) =>
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {amount}
+                        {price}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -288,7 +296,7 @@ const filteredProducts = details.filter((product) =>
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {date}
+                        {quantity}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -296,7 +304,7 @@ const filteredProducts = details.filter((product) =>
                         <Chip
                           size="sm"
                           variant="ghost"
-                          value={status}
+                          value={tprice}
                           color={
                             status === "paid"
                               ? "green"
@@ -307,7 +315,7 @@ const filteredProducts = details.filter((product) =>
                         />
                       </div>
                     </td>
-                    <td className={classes}>
+                    {/* <td className={classes}>
                       <div className="flex items-center gap-3">
                         <div className="h-9 w-12 rounded-md border border-blue-gray-50 p-1">
                           <Avatar
@@ -346,7 +354,7 @@ const filteredProducts = details.filter((product) =>
                           <PencilIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               },
