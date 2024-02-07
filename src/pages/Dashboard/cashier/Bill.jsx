@@ -164,21 +164,29 @@ const filteredProducts = details.filter((product) =>
   const handleClickInside=()=>{
     setShowDropdown(!showDropdown); 
   }
-  let data=[{}];
+  
+  
+  let data=[];
   const addData=()=>{
     var name=document.querySelector("#pname");
     var quantity=document.querySelector("#quantity");
     var price=document.querySelector("#price");
 
+    const quantityValue = parseFloat(quantity.value);
+    const priceValue = parseFloat(price.value);
+    console.log(quantityValue);
 
-     data=[
-    {
-      pname:name.value,
-      quantity:quantity.value,
-      price:price.value,
-      tprice:quantity*price
+    if (!isNaN(quantityValue) && !isNaN(priceValue)) {
+      const newData = {
+        pname: name.value,
+        quantity: isNaN(quantityValue)?1: quantityValue,
+        price: priceValue,
+        tprice: quantityValue * priceValue,
+      };
+      data.push(newData);
     }
-    ]
+    console.log(data);
+    
   }
 
 
