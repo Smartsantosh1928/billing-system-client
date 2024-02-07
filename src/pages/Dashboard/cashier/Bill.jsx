@@ -174,6 +174,7 @@ const filteredProducts = details.filter((product) =>
 
     const quantityValue = parseFloat(quantity.value);
     const priceValue = parseFloat(price.value);
+    const totalPrice=quantityValue * priceValue;
     console.log(quantityValue);
 
     if (!isNaN(quantityValue) && !isNaN(priceValue)) {

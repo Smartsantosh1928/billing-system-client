@@ -1,8 +1,63 @@
 import React from 'react'
+import {
+  PencilIcon
+} from "@heroicons/react/24/outline";
+
+
 
 export function Profile() {
   return (
-    <div>Profile</div>
+    <>
+      <h1 className='text-xl mb-10 ml-3'>User Profile</h1>
+    <div className='flex gap-20'>
+      <div className='flex items-center h-[130px] w-[330px] bg-white shadow-xl rounded-xl '>
+          <div className='h-20 w-20 flex justify-center items-center rounded-full  m-4 bg-orange-300'>
+            <h1 className='text-2xl '>R</h1>
+          </div>
+          <div>
+            <h1 className='text-xl font-medium '>Roshan David R</h1>
+            <p className='text-sm font-medium '>roshan123@gmail.com</p>
+          </div>
+      </div>
+      <div className='flex flex-col  h-[130px] w-[330px] bg-white shadow-xl rounded-xl '>
+          <div className='m-7'>
+            <h1 className='font-semibold tracking-wider'>Company Details</h1>
+            <h1 className=' font-medium tracking-wider'>Mannaran company</h1>
+            <h1 className=' font-medium tracking-wider'>Admin</h1>
+          </div>
+      </div>
+    </div>
+
+    <div className='h-[460px] w-[400px] bg-white shadow-xl rounded-xl'>
+      <div className='pt-10 flex justify-around m-5'>
+        <h1 className='text-md tracking-wider font-semibold -ml-7'>Account information</h1>
+        <span className='flex text-md tracking-wider font-medium '><PencilIcon className='h-5 w-5 cursor-pointer'/></span>
+      </div>
+        <hr className='border border-black w-10 ml-9 -mt-3' />
+      <div className='m-5 flex gap-10 pt-5'> 
+        <div className=''>
+          <h1 className='pb-2'>Name</h1>
+          <h1>Roshan David</h1>
+        </div>
+        <div>
+          <h1 className='pb-2 pl-7'>Email</h1>
+          <h1 className='pl-7'>roshan123@gmail.com</h1>
+        </div>
+      </div>
+      <hr className='w-[350px] ml-[20px]'/>
+      <div className='m-5 flex gap-10 '> 
+        <div className=''>
+          <h1 className='pb-2'>Company </h1>
+          <h1>Mannaran company</h1>
+        </div>
+        <div>
+          <h1 className='pb-2'>Password</h1>
+          <h1>1234</h1>
+        </div>
+      </div>
+      <hr className='w-[350px] ml-[20px]'/>
+    </div>
+    </>
   )
 }
 
