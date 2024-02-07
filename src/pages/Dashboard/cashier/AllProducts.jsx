@@ -125,7 +125,6 @@ export function AllProducts() {
             See information about all Products
           </Typography>
         </div>
-        
       </div>
     </CardHeader>
     <CardBody className="px-0">

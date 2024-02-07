@@ -17,30 +17,30 @@ import api from "../../../utils/Utils"
 export function Product() {
 
 
-  const [imageUrl, setImageUrl] = useState(null);
-  const [details , setDetails] = useState({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
+  // const [imageUrl, setImageUrl] = useState(null);
+  const [details , setDetails] = useState({name:"",barcode:0,price:0,stock:0,lowStock:0,color:""})
   const [active,setActive] = useState(false);
-  const [imagedata,setImageData] = useState(null);
+  // const [imagedata,setImageData] = useState(null);
   const navigate = useNavigate();
 
   
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    const imagedata = new FormData();
-    imagedata.append('file',file);
-    setImageData(imagedata)
-    console.log(imagedata)
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert('Please select a valid image file.');
-    }
-  };
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   const imagedata = new FormData();
+  //   imagedata.append('file',file);
+  //   setImageData(imagedata)
+  //   console.log(imagedata)
+  //   if (file && file.type.startsWith('image/')) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       setImageUrl(reader.result);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   } else {
+  //     alert('Please select a valid image file.');
+  //   }
+  // };
 
 
   const handleChange =(e)=>{
@@ -51,37 +51,37 @@ export function Product() {
       })
       setActive(!active);
     }
-    else if(imagedata!=null)
-    {
-      setDetails((prev)=>{
-          return{...prev,"file":imagedata}
-      })
-    }
+    // else if(imagedata!=null)
+    // {
+    //   setDetails((prev)=>{
+    //       return{...prev,"file":imagedata}
+    //   })
+    // }
     else
     setDetails((prev)=>{
       return {...prev,[name]: value}
     })
     console.log(details)
   };
-const reset=()=>{
-  document.querySelectorAll(".clear").forEach((e)=>e.value="")
-  setDetails({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
-}
+// const reset=()=>{
+//   document.querySelectorAll(".clear").forEach((e)=>e.value="")
+//   setDetails({name:"",barcode:0,measurement:"",description:"",price:0,stock:0,lowStock:0,color:""})
+// }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         const fetchData = async () => {
           try {
-            let imageStr = "";
-            const responseImg = await api.post("files/upload",imagedata)
-            if (responseImg.data.success) {
-              imageStr = responseImg.data.fileName;
-              console.log(imageStr);
-            } else {
-              throw new Error(responseImg.data.msg);
-            }
-            const product = { ...details, image: imageStr };
+            // let imageStr = "";
+            // const responseImg = await api.post("files/upload",imagedata)
+            // if (responseImg.data.success) {
+            //   imageStr = responseImg.data.fileName;
+            //   console.log(imageStr);
+            // } else {
+            //   throw new Error(responseImg.data.msg);
+            // }
+            const product = { ...details};
             console.log(product);
               const response = await api.post('/products/add',product);
               if (response.data.success) {
@@ -92,7 +92,7 @@ const reset=()=>{
                   text: response.data.msg,
                   icon: 'success',
                 });
-                reset();
+                // reset();
               } else {
                 throw new Error(response.data.msg);
               }
