@@ -36,26 +36,31 @@ export function Profile() {
         <hr className='border border-black w-10 ml-9 -mt-3' />
       <div className='m-5 flex gap-10 pt-5'> 
         <div className=''>
-          <h1 className='pb-2'>Name</h1>
-          <h1>Roshan David</h1>
+          <h1 className='pb-2 font-semibold text-md'>Name</h1>
+          <h1 className='font-medium text-md'>Roshan David</h1>
+          <hr className='w-full border-gray-400 border-2px'/> 
         </div>
         <div>
-          <h1 className='pb-2 pl-7'>Email</h1>
-          <h1 className='pl-7'>roshan123@gmail.com</h1>
+          <h1 className='pb-2 font-semibold text-md'>Email</h1>
+          <h1 className='font-medium text-md'>roshan123@gmail.com</h1>
+          <hr className='w-full border-gray-400 border-2px'/> 
         </div>
       </div>
-      <hr className='w-[350px] ml-[20px]'/>
+
       <div className='m-5 flex gap-10 '> 
         <div className=''>
-          <h1 className='pb-2'>Company </h1>
-          <h1>Mannaran company</h1>
+          <h1 className='pb-2 font-semibold text-md'>Company </h1>
+          <h1 className='font-medium text-md'>Mannaran company</h1>
+          <hr className='w-full border-gray-400 border-2px'/> 
+
         </div>
         <div>
-          <h1 className='pb-2'>Password</h1>
-          <h1>1234</h1>
+          <h1 className='pb-2 font-semibold text-md'>Password</h1>
+          <h1 className='font-medium text-md'>1234</h1>
+          <hr className='w-full border-gray-400 border-2px'/> 
+
         </div>
       </div>
-      <hr className='w-[350px] ml-[20px]'/>
     </div>
     </>
   )
