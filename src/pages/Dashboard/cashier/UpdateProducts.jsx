@@ -13,7 +13,7 @@ import { CgAddR } from "react-icons/cg";
 
 export function UpdateProducts({handleOpen,edit}) {
 
-  const [details,setDetails] = useState({name:edit.name,barcode:edit.barcode,stock:edit.stock,lowStock:edit.lowStock,price:edit.price})
+  const [details,setDetails] = useState({_id:edit._id,name:edit.name,barcode:edit.barcode,stock:edit.stock,lowStock:edit.lowStock,price:edit.price})
   const handleChange= (e)=>{
     const {name,value}=e.target
     setDetails((prev)=>{
@@ -21,6 +21,38 @@ export function UpdateProducts({handleOpen,edit}) {
   })
   console.log(details); 
   }
+
+  const handleSubmit = (e)=>{
+    const update =async () =>{
+      try{
+        const response = await api.post("/products/update",details)
+        if (response.data.success) 
+        {
+          console.log(response);
+          console.log(response.data);
+          Swal.fire({
+            title: 'Success...!',
+            text: response.data.msg,
+            icon: 'success',
+          });
+        } 
+        else 
+        {
+          throw new Error(response.data.msg);
+        }
+      }
+      catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: error.message,
+          icon: 'error',
+        });
+      }
+    }
+    update();
+  }
+
+  
 return (
   <>
     <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleOpen}>
@@ -132,7 +164,7 @@ return (
           </div>
           </form> 
           <div className="flex flex-col  sm:items-start sm:justify-start sm:w-full md:items-center md:justify-center gap-4 ">
-            <Button className="flex items-center justify-center w-60 mb-5 gap-4" fullWidth>
+            <Button className="flex items-center justify-center w-60 mb-5 gap-4" onClick={handleSubmit} fullWidth>
               Add Products<CgAddR className='w-4 h-5'/>
             </Button>
           </div>
