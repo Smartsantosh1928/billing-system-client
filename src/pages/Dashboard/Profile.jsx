@@ -21,19 +21,22 @@ export function Profile() {
       </div>
       <div className='flex flex-col  h-[130px] w-[330px] bg-white shadow-xl rounded-xl '>
           <div className='m-7'>
-            <h1 className='font-semibold tracking-wider'>Company Details</h1>
+            <h1 className='font-semibold text- tracking-wider'>Company Details</h1>
             <h1 className=' font-medium tracking-wider'>Mannaran company</h1>
             <h1 className=' font-medium tracking-wider'>Admin</h1>
           </div>
       </div>
     </div>
 
-    <div className='h-[460px] w-[400px] bg-white shadow-xl rounded-xl'>
+
+
+  
+    <div className='pb-7 w-[400px] bg-white shadow-xl rounded-xl'>
       <div className='pt-10 flex justify-around m-5'>
-        <h1 className='text-md tracking-wider font-semibold -ml-7'>Account information</h1>
+        <h1 className='text-xl tracking-wider font-semibold -ml-7'>Account information</h1>
         <span className='flex text-md tracking-wider font-medium '><PencilIcon className='h-5 w-5 cursor-pointer'/></span>
       </div>
-        <hr className='border border-black w-10 ml-9 -mt-3' />
+        {/* <hr className='border border-black w-10 ml-9 -mt-3' /> */}
       <div className='m-5 flex gap-10 pt-5'> 
         <div className=''>
           <h1 className='pb-2 font-semibold text-md'>Name</h1>
@@ -52,16 +55,29 @@ export function Profile() {
           <h1 className='pb-2 font-semibold text-md'>Company </h1>
           <h1 className='font-medium text-md'>Mannaran company</h1>
           <hr className='w-full border-gray-400 border-2px'/> 
-
-        </div>
-        <div>
-          <h1 className='pb-2 font-semibold text-md'>Password</h1>
-          <h1 className='font-medium text-md'>1234</h1>
-          <hr className='w-full border-gray-400 border-2px'/> 
-
-        </div>
+       </div> 
       </div>
     </div>
+
+
+    <div className='mt-10 w-[400px] h-[400px] bg-white shadow-2xl rounded-xl '>
+        <h1 className='text-xl tracking-wider font-semibold text-center pt-3'>Cashier Info</h1>
+        <div className='w-[350px] pl-12 pt-5'>
+          <div>
+            <h1 className='text-md font-semibold tracking-wider pb-1'>Roshan</h1>
+            <hr className='border border-gray-400'/>
+          </div>
+          <div className='pt-6'>
+            <h1 className='text-md font-semibold tracking-wider pb-1'>Roshan</h1>
+            <hr className='border border-gray-400'/>
+          </div>
+          <div className='pt-6'>
+            <h1 className='text-md font-semibold tracking-wider pb-1'>Roshan </h1>
+            <hr className='border border-gray-400'/>
+          </div>
+        </div>
+    </div>
+
     </>
   )
 }
