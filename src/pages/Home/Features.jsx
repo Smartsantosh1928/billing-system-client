@@ -2,6 +2,8 @@ import React from 'react'
 import {CheckIcon } from "@heroicons/react/24/solid";
 import img3 from "../../../public/bill.png"
 import img4 from "../../../public/add.png"
+import dash from "../../../public/dashboard.png"
+import bill from "../../../public/billpage.png"
 import {Button}from '@material-tailwind/react'
 
 
@@ -15,6 +17,17 @@ const Features = () => {
     </div>
 
     <div className='flex h-full w-full'>
+      <div className='  justify-center w-[20%] h-full items-center m-20  '>
+          <h1 className='text-xl font-semibold text-blue-400'>Dashboard</h1>
+          <p className='text-base text-justify text-gray-600'>This is your user friendly and very convenient dashboard.</p>
+        </div>
+
+      <div className='w-[50%] h-96 ml-40  p-5 border-2 shadow-lg m-10 flex'> 
+        <img src={dash} className='h-full w-full' alt="" />
+        
+      </div>
+    </div>
+    <div className='flex h-full w-full'>
 
       <div className='w-[50%] h-96  p-5 border-2 shadow-lg m-10 flex'> 
         <img src={img4} className='h-full w-full' alt="" />
@@ -23,6 +36,17 @@ const Features = () => {
       <div className='  justify-center w-[20%] h-full items-center m-20 '>
           <h1 className='text-xl font-semibold text-blue-400'>Add products</h1>
           <p className='text-base text-justify text-gray-600'>Add your products with convenient image and use it for billing.</p>
+        </div>
+    </div>
+    <div className='flex flex-col justify-center items-center h-full w-full'>
+
+      <div className='w-[50%] h-96  p-5 border-2 shadow-lg m-10 flex'> 
+        <img src={bill} className='h-full w-full' alt="" />
+        
+      </div>
+      <div className='  justify-center w-[30%] h-full items-center m-20 '>
+          <h1 className='text-xl font-semibold text-blue-400'>Billing Page</h1>
+          <p className='text-base text-justify text-gray-600'>Here you can easily make a bill and we added a list for select the product from database of products.</p>
         </div>
     </div>
 

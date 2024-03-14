@@ -5,8 +5,8 @@ import { PiShootingStarDuotone } from "react-icons/pi";
 import {FaXTwitter} from "react-icons/fa6"
 import {HeartIcon,StarIcon,ArrowRightIcon} from "@heroicons/react/24/solid";
 import {Button}from '@material-tailwind/react'
-
 const features=["High security","User Friendly","Accuracy","Inventory Tracking"];
+const service=["FREE","MONTHLY","YEARLY"];
 const Footer = () => {
   return (
     <>
@@ -56,12 +56,22 @@ const Footer = () => {
           
         </div>
     </div>
-    <div className='w-[25%] bg-gray-300'>
-
+    <div className='w-[25%]'>
+    <h1 className='text-base font-medium border-b-[1px] pb-2 tracking-wider m-12 text-white '>SERVICES</h1>
+  
+  <div className='m-12 -mt-5  '>
+    {service.map((fe)=>{
+       return   <p className='flex pb-1 text-base hover:translate-x-3 cursor-pointer hover:transform hover:duration-300 text-orange-400 '>  <PiShootingStarDuotone className='h-7 w-7 px-1'/>{fe}</p>
+    })}
+    
+  </div>
     </div>
-    <div className='w-[25%]  bg-gray-300'>
-      <h1 className='m-14 text-lg font-medium tracking-wide'></h1>
-      
+    <div className='w-[25%]  '>
+      <h1 className='text-base font-medium border-b-[1px] pb-2 tracking-wider m-12 text-white'>CONTACT</h1>
+      <div className=''>
+        <h1 className='text-base font-medium -mt-7 tracking-wider m-12 text-orange-400'>Email : roshan1114@gmail.com</h1>
+        <h1 className='text-base font-medium -mt-10 tracking-wider m-12 text-orange-400'>Phno : 7494734390</h1>
+      </div>
     </div>
     
    </div>
