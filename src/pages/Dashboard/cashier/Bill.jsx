@@ -39,8 +39,8 @@ let data= [];
   const [filteredProduct, setFilteredProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const [price,setPrice]=useState(" ")
   const [items,setItems] = useState([])
+  const [price,setprice] = useState(0)
 
   const handleChange = (e) => {
     setFormData({
@@ -153,6 +153,9 @@ const handleDelete = (index)=>{
 
 useEffect(() => {
     setItems(data);
+    items.map((item)=>{
+      setprice(item.tprice+price)
+    })
 }, [refresh]);
 
 
@@ -316,8 +319,29 @@ useEffect(() => {
           </tbody>
         </table>
       </CardBody>
-      
     </Card>
+    <div className="w-full flex gap-20 justify-end pr-10">
+      <div>
+      <Typography
+        variant="small"
+        color="blue-gray"
+        className="font-bold text-2xl pt-5"
+      >
+      Total : ${price}
+      </Typography>
+      </div>
+      <div>
+      <Typography
+        variant="small"
+        color="blue-gray"
+        className="font-normal"
+      >
+      <Button className="mt-5">
+        Save & Print
+      </Button>
+      </Typography>
+      </div>
+    </div>
     </>
   )
 } 
