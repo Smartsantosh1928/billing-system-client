@@ -1,26 +1,17 @@
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
 import React, { useEffect } from 'react'
 import { useState } from "react";
-import { PencilIcon } from "@heroicons/react/24/solid";
-import {
-  ArrowDownTrayIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import {
   CardHeader,
   CardBody,
   Chip,
-  CardFooter,
-  Avatar,
   IconButton,
-  Tooltip,
 } from "@material-tailwind/react";
 import api from '../../../utils/Utils';
 import Swal from "sweetalert2";
@@ -36,7 +27,7 @@ let data= [];
 
   const [formData, setFormData] = useState({pname:''});
   const [details,setDetails] = useState([]);
-  const [customerDetails,setCustomerDetails] = useState({name:'',city:'',number:''});
+  const [customerDetails,setCustomerDetails] = useState({customerName:'',city:'',number:''});
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null); 
   const [filteredProduct, setFilteredProducts] = useState([]);
@@ -180,7 +171,7 @@ const handleSubmit = async (e) => {
           // } else {
           //   throw new Error(responseImg.data.msg);
           // }
-          const product = { ...customerDetails,...items,totalAmount};
+          const product = { ...customerDetails,items,totalAmount};
           console.log(product);
             const response = await api.post('/bill/new-bill',product);
             if (response.data.success) {
