@@ -49,7 +49,7 @@ const BillTemp = () => {
          <div className='w-[850px] pt-5 pb-2 flex'>
             <div className='w-[460px] text-justify bg-blue-200 p-3 rounded-l-lg'>
                 <h1 className='text-sm font-bold'>NOTICE:</h1>
-                <p className=''>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta rerum maxime facere, itaque dignissimos ratione consectetur quae! Quisquam  </p>
+                <p className=''>All purchases are final. We regret to inform you that exchanges and refunds are not available.</p>
             </div>
             <div className='w-[450px] bg-blue-400 p-5 rounded-r-lg'>
                 <h1 className='text-2xl text-white font-bold'>TOTAL</h1>
