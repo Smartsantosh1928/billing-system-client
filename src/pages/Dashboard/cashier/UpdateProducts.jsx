@@ -11,16 +11,33 @@ import api from '../../../utils/Utils';
 import { CgAddR } from "react-icons/cg";
  
 
-export function UpdateProducts({handleOpen,edit}) {
+export function UpdateProducts({setReload,handleOpen,edit}) {
+  const [details,setDetails] = useState({_id:edit._id,name:edit.name,barcode:edit.barcode,stock:edit.stock,lowStock:edit.lowStock,price:edit.price,isActive:edit.isActive})
+  const[active,setActive]=useState(edit.isActive);
 
-  const [details,setDetails] = useState({_id:edit._id,name:edit.name,barcode:edit.barcode,stock:edit.stock,lowStock:edit.lowStock,price:edit.price})
-  const handleChange= (e)=>{
+
+  // const handleChange= (e)=>{
+  //   const {name,value}=e.target
+  //   setDetails((prev)=>{
+  //   return {...prev,[name]: value}
+  // })
+  // console.log(details); 
+  // }
+
+  const handleChange =(e)=>{
     const {name,value}=e.target
+    if(name=="isActive"){
+      setDetails((prev)=>{
+        return {...prev,"isActive": !active}
+      })
+      setActive(!active);
+    }
+    else
     setDetails((prev)=>{
-    return {...prev,[name]: value}
-  })
-  console.log(details); 
-  }
+      return {...prev,[name]: value}
+    })
+    console.log(details)
+  };
 
   const handleSubmit = (e)=>{
     const update =async () =>{
@@ -28,13 +45,13 @@ export function UpdateProducts({handleOpen,edit}) {
         const response = await api.post("/products/update",details)
         if (response.data.success) 
         {
-          console.log(response);
           console.log(response.data);
           Swal.fire({
             title: 'Success...!',
             text: response.data.msg,
             icon: 'success',
           });
+          setReload(true)
         } 
         else 
         {
@@ -50,22 +67,26 @@ export function UpdateProducts({handleOpen,edit}) {
       }
     }
     update();
+    handleOpen(!update)
   }
 
   
 return (
   <>
-    <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleOpen}>
-      <div className='w-[90%]  h-screen flex flex-col items-center justify-center gap-5'>
+    <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleOpen}>        
+      <div className='w-[100%]  h-screen flex flex-col items-center justify-center gap-5'>
+      <Typography variant="h3" color="white" className="text-blue-300">
+              Update Products
+        </Typography>
       <form className="grid md:grid-cols-2 lg:grid-cols-2 w-[60%] gap-4 sm:grid-cols-1 mb-4">
           <div className="flex flex-col gap-4">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6"  className="text-white -mb-3">
               Name
             </Typography>
             <Input
               size="md"
               name='name'
-              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="text-white clear !border-gray-500 focus:!border-blue-500"
               value={details.name}
               onChange={handleChange}
               labelProps={{
@@ -75,7 +96,7 @@ return (
           </div>
 
           <div className="flex flex-col gap-4">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6"  className="text-white -mb-3">
               BarCode
             </Typography>
             <Input
@@ -84,7 +105,7 @@ return (
               type='number'
               value={details.barcode}
               onChange={handleChange}
-              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900 hover:decoration-brown-700"
+              className="text-white clear !border-gray-500 focus:!border-blue-500"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -92,7 +113,7 @@ return (
           </div>
 
           <div className="flex flex-col gap-4">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6"  className="text-white -mb-3">
               Price
             </Typography>
             <Input
@@ -101,7 +122,7 @@ return (
               value={details.price}
               onChange={handleChange}
               type='number'
-              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="text-white clear !border-gray-500 focus:!border-blue-500"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -109,7 +130,7 @@ return (
           </div>
 
           <div className="flex flex-col gap-4">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6"  className="text-white -mb-3">
               Stock
             </Typography>
             <Input
@@ -118,7 +139,7 @@ return (
               type ='number'
               value={details.stock}
               onChange={handleChange}
-              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="text-white clear !border-gray-500 focus:!border-blue-500"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -126,7 +147,7 @@ return (
           </div>
 
           <div className="flex flex-col gap-4">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6"  className="text-white -mb-3">
               Low Stock
             </Typography>
             <Input
@@ -135,7 +156,7 @@ return (
               value={details.lowStock}
               onChange={handleChange}
               type='number'
-              className="clear !border-t-blue-gray-200 focus:!border-t-gray-900"
+              className="text-white clear  !border-gray-500 focus:!border-blue-500"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -151,7 +172,7 @@ return (
                 <Typography
                   variant="small"
                   color="gray"
-                  className="clear flex items-center font-normal"
+                  className="text-white clear flex items-center font-normal"
                 >
                   <p
                     className="font-medium transition-colors hover:text-gray-900"
@@ -164,8 +185,8 @@ return (
           </div>
           </form> 
           <div className="flex flex-col  sm:items-start sm:justify-start sm:w-full md:items-center md:justify-center gap-4 ">
-            <Button className="flex items-center justify-center w-60 mb-5 gap-4" onClick={handleSubmit} fullWidth>
-              Add Products<CgAddR className='w-4 h-5'/>
+            <Button className="flex items-center justify-center w-48 mb-5 gap-4 bg-blue-300 " onClick={handleSubmit} fullWidth>
+              Update
             </Button>
           </div>
       </div>  

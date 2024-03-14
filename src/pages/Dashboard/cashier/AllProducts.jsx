@@ -62,7 +62,8 @@ export function AllProducts() {
     };
   
     fetchData();
-  }, [reload, page]);
+    setReload(false)
+  }, [reload, page, update]);
   
 
 
@@ -105,9 +106,7 @@ export function AllProducts() {
   const handleEdit = (_id)=>{
     const edit = dataa.find((obj)=>obj._id===_id)
     setEditData(edit)
-    console.log('====================================');
-    console.log(edit);
-    console.log('====================================');
+    console.log(edit)
     setUpdate(!update)
   }
 
@@ -251,7 +250,7 @@ export function AllProducts() {
       </div>
     </CardFooter>
   </Card>
-  {update&&<UpdateProducts handleOpen={handleEdit} edit={editData}/>}
+  {update&&<UpdateProducts setReload={setReload} handleOpen={setUpdate} edit={editData}/>}
     </>
 );
 }
