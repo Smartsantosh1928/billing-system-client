@@ -23,6 +23,8 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import api from '../../../utils/Utils';
+import Swal from "sweetalert2";
+
 
 
 
@@ -34,13 +36,14 @@ let data= [];
 
   const [formData, setFormData] = useState({pname:''});
   const [details,setDetails] = useState([]);
+  const [customerDetails,setCustomerDetails] = useState({name:'',city:'',number:''});
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null); 
   const [filteredProduct, setFilteredProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [items,setItems] = useState([])
-  const [price,setprice] = useState(0)
+  const [totalAmount,setPrice] = useState(0)
 
   const handleChange = (e) => {
     setFormData({
@@ -48,9 +51,15 @@ let data= [];
       [e.target.name]: e.target.value
     });
   };
+  const handleDetailsChange = (e) => {
+    setCustomerDetails({
+      ...customerDetails,
+      [e.target.name]: e.target.value
+    });
+    console.log(customerDetails);
+  };
  
  useEffect(()=>{
-
 
   const fetchData = async () => {
     try {
@@ -125,40 +134,84 @@ const filteredProducts = details.filter((product) =>
     const priceValue = parseFloat(price.value);
 
     if (!isNaN(quantityValue) && !isNaN(priceValue)) {
-        const index = data.findIndex(item => item.pname === name.value);
+        const index = data.findIndex(item => item.productName === name.value);
         if (index !== -1) {
-            // If product already exists, update quantity and total price
             data[index].quantity += quantityValue;
-            data[index].tprice += quantityValue * priceValue;
+            data[index].totalPrice += quantityValue * priceValue;
         } else {
-            // If product doesn't exist, create a new entry
             const newData = {
-                pname: name.value,
+                productName: name.value,
                 quantity: quantityValue,
-                price: priceValue,
-                tprice: quantityValue * priceValue,
+                unitPrice: priceValue,
+                totalPrice: quantityValue * priceValue,
             };
             data.push(newData);
         }
     }
-
     setRefresh(!refresh);
     console.log(data);
 };
 
 const handleDelete = (index)=>{
   data.splice(index,1)
-  setRefresh(!refresh);
+  setRefresh(!refresh)
+  setPrice(0)
 }
 
 useEffect(() => {
-    setItems(data);
-    items.map((item)=>{
-      setprice(item.tprice+price)
-    })
-}, [refresh]);
+  setItems(data);
+  let tA = 0;
+  data.forEach((item) => {
+    tA += item.totalPrice;
+  });
+  setPrice(tA);
+}, [data, refresh]);
 
-
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+      const fetchData = async () => {
+        try {
+          // let imageStr = "";
+          // const responseImg = await api.post("files/upload",imagedata)
+          // if (responseImg.data.success) {
+          //   imageStr = responseImg.data.fileName;
+          //   console.log(imageStr);
+          // } else {
+          //   throw new Error(responseImg.data.msg);
+          // }
+          const product = { ...customerDetails,...items,totalAmount};
+          console.log(product);
+            const response = await api.post('/bill/new-bill',product);
+            if (response.data.success) {
+              console.log(response);
+              console.log(response.data);
+              Swal.fire({
+                title: 'Success...!',
+                text: response.data.msg,
+                icon: 'success',
+              });
+              // reset();
+            } else {
+              throw new Error(response.data.msg);
+            }
+          } catch (error) {
+            Swal.fire({
+              title: 'Error!',
+              text: error.message,
+              icon: 'error',
+            });
+          }
+        };
+    fetchData();   
+  } catch (err) {
+    Swal.fire({
+      title: 'Error!',
+      text: err.message,
+      icon: 'error',
+    });
+  }
+};
 
   return (
     <>
@@ -172,36 +225,44 @@ useEffect(() => {
             Nice to meet you! Enter Bill details to get the bill.
           </Typography>
         </div>
-        <div className="flex justify-center">
-          <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 gap" autoComplete="off">
-            <div className="mb-1 flex flex-col gap-6"  >
-              <Input name="pname" id="pname" label="Product Name"  onFocus={handleClickOutside}  value={searchTerm} onChange={handleSearch} color="blue" />
-            </div>
-            { showDropdown && (
-              <ul onClick={handleClickOutside} onBlur={handleClickInside} className="absolute bg-white border border-gray-200 px-3 rounded-md shadow-lg w-96 z-10">
-                {filteredProducts.map((product) => (
-                  <li
-                  key={product.id}
-                  onClick={() => handleProductSelection(product)}
-                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                  >
-                    {product.name}
-                    <hr className="border-gray-300"/>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <div className="mb-1 flex flex-col gap-1">
-            <Input name="quantity" id="quantity" label="Quantity" onChange={handleChange} color="blue" />
-            <Input name="price" id="price" label="Price"   onChange={handleChange} color="blue" />
-            </div>
-            <div className="flex justify-center items-center" >
-            <Button className="mt-6 w-80" color="black" onClick={addData} fullWidth>
-                Add
-            </Button>
+        <div className="flex items-center justify-center gap-16">
+          <div className="flex flex-col gap-1 w-80 pt-5">
+              <Input name="customerName" id="customerName" label="Customer Name" color="blue" onChange={handleDetailsChange} />
+              <Input name="city" id="city" label="City" color="blue" onChange={handleDetailsChange} />
+              <Input name="number" id="number" label="Mobile Number" color="blue" onChange={handleDetailsChange} />
           </div>
-          </form>
+
+          <div className="flex justify-center">
+            <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 gap" autoComplete="off">
+              <div className="mb-1 flex flex-col gap-6"  >
+                <Input name="pname" id="pname" label="Product Name"  onFocus={handleClickOutside}  value={searchTerm} onChange={handleSearch} color="blue" />
+              </div>
+              { showDropdown && (
+                <ul onClick={handleClickOutside} onBlur={handleClickInside} className="absolute bg-white border border-gray-200 px-3 rounded-md shadow-lg w-96 z-10">
+                  {filteredProducts.map((product) => (
+                    <li
+                    key={product.id}
+                    onClick={() => handleProductSelection(product)}
+                    className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                    >
+                      {product.name}
+                      <hr className="border-gray-300"/>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="mb-1 flex flex-col gap-1">
+              <Input name="quantity" id="quantity" label="Quantity" onChange={handleChange} color="blue" />
+              <Input name="price" id="price" label="Price"   onChange={handleChange} color="blue" />
+              </div>
+            </form>
+          </div>
         </div>
+              <div className="flex justify-center items-center mr-16" >
+              <Button className="mt-6 w-80" color="black" onClick={addData} fullWidth>
+                  Add
+              </Button>
+            </div>
       </Card>
     </div>
 
@@ -232,10 +293,10 @@ useEffect(() => {
             {items.map(
               (
                 {
-                  pname,
+                  productName,
                   quantity,
-                  price,
-                  tprice
+                  unitPrice,
+                  totalPrice
                 },
                 index,
               ) => {
@@ -264,7 +325,7 @@ useEffect(() => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {pname}
+                        {productName}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -273,7 +334,7 @@ useEffect(() => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {price}
+                        {unitPrice}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -298,7 +359,7 @@ useEffect(() => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {tprice}
+                        {totalPrice}
                       </Typography>
                     </td>
                       <td className={classes}>
@@ -327,7 +388,7 @@ useEffect(() => {
         color="blue-gray"
         className="font-bold text-2xl pt-5"
       >
-      Total : ${price}
+      Total : ${totalAmount}
       </Typography>
       </div>
       <div>
@@ -336,7 +397,7 @@ useEffect(() => {
         color="blue-gray"
         className="font-normal"
       >
-      <Button className="mt-5">
+      <Button className="mt-5" onClick={handleSubmit}>
         Save & Print
       </Button>
       </Typography>
