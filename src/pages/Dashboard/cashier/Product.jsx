@@ -87,6 +87,8 @@ export function Product() {
               if (response.data.success) {
                 console.log(response);
                 console.log(response.data);
+                const inputs = document.querySelectorAll('input')
+                inputs.forEach(input=> input.value='')
                 Swal.fire({
                   title: 'Success...!',
                   text: response.data.msg,

@@ -6,10 +6,10 @@ import {
     Dialog
   } from "@material-tailwind/react";
 
-export const BillTemp = () => {
+export const BillTemp = ({handle}) => {
   return (
     <>
-    <Dialog open={open} size='xl'  className='bg-transparent shadow-none h-screen overflow-scroll ' handler={true}>
+    <Dialog open={open} size='xl'  className='bg-transparent shadow-none h-screen overflow-scroll ' handle={handle}>
         <div className='flex flex-col justify-center items-center pt-10 bg-white '>
             <div className='w-[850px] bg-blue-400 shadow-xl rounded-lg flex justify-around items-center'>
                 {/* <BellAlertIcon className='text-white h-10 w-10'/> */}

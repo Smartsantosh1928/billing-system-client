@@ -111,7 +111,6 @@ export function Signup() {
         handleOpen()
       }else{
         setLoading(false)
-        setdetails({name:"",email:'',password:''})
         Swal.fire({
           title: 'Error!',
           text: data.msg,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Bill1 from "../../../../public/Bill1.svg"
 import Bill2 from "../../../../public/Bill2.svg"
 import Bill3 from "../../../../public/Bill3.svg"
@@ -14,14 +14,21 @@ import BillTemp from '../BillTemp'
 
 export function AllBills() {
   const BillImg = [Bill1,Bill2,Bill3,Bill4,Bill5,Bill6,Bill7,Bill8,Bill9,Bill10,Bill11]
+  const [billModel,setBillModel] = useState(false)
+
+  const handleOpen = (()=>{
+    setBillModel(!billModel)
+  })
+
   return (
     <>
-    <div className='w-full flex items-start justify-start'>
+    <div className='w-full flex items-start justify-start' onClick={handleOpen}>
       <div className='w-64 h-40 flex flex-col items-center justify-center shadow-2xl rounded-2xl'>
         <div className='w-full h-[70%]'><img src={`${BillImg[Math.floor(Math.random()*BillImg.length)]}`}alt="" className='w-full h-full' /></div>
         <div className='w-full bg-blue-400 h-[30%] flex items-end justify-end rounded-b-2xl'></div>
       </div>
     </div>
+    {billModel && <BillTemp handle={setBillModel} />}
     </>
   )
 }
