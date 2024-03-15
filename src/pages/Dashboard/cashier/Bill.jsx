@@ -198,13 +198,13 @@ const filteredProducts = details.filter((product) =>
   }
 
   const addData = () => {
-    let val = true;
-    errors.forEach((err)=>{
-      if(err=!"") 
-      val=false
+    // let val = true;
+    // errors.forEach((err)=>{
+    //   if(err=!"") 
+    //   val=false
       
-    })
-    if (val) {
+    // })
+    // if (val) {
       var name = document.querySelector("#pname");
       var quantity = document.querySelector("#quantity");
       var price = document.querySelector("#price");
@@ -229,15 +229,15 @@ const filteredProducts = details.filter((product) =>
       }
       setRefresh(!refresh);
       console.log(data);
-    }
-    else
-    {
-      Swal.fire({
-        title: 'Error!',
-        text: "Check the Input Correctly...!",
-        icon: 'error',
-      });
-    }
+    // }
+    // else
+    // {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: "Check the Input Correctly...!",
+    //     icon: 'error',
+    //   });
+    // }
 };
 
 const handleDelete = (index)=>{
