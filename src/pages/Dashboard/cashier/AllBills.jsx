@@ -21,12 +21,9 @@ export function AllBills() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState({});
   const [data,setData]=useState([]);
+  const [view,setView] = useState({})
 
 
-
-  const handleOpen = (()=>{
-    setBillModel(!billModel)
-  })
 
 
   useEffect(() => {
@@ -35,7 +32,7 @@ export function AllBills() {
         const response = await api.post("/bill/allbills",{page});
         if (response.data) {
           console.log('====================================');
-          console.log(response.data);
+          console.log(response.data.Bills);
           console.log('====================================');
           setData(response.data.Bills);
           setPages({
@@ -57,17 +54,26 @@ export function AllBills() {
     fetchData();
   }, [page]);
 
+  const handleOpen = (_id)=>{
+    const edit = data.find((obj)=>obj._id===_id)
+    setView(edit)
+    console.log(edit)
+    setBillModel(!billModel)
+  }
+
   return (
     <>
     <div className='w-full h-full grid grid-cols-4 gap-5'>
-      <div className='w-full flex items-start justify-start' onClick={handleOpen}>
-        <div className='w-64 h-40 flex flex-col items-center justify-center shadow-2xl rounded-2xl'>
-          <div className='w-full h-[70%]'><img src={`${BillImg[Math.floor(Math.random()*BillImg.length)]}`}alt="" className='w-full h-full' /></div>
-          <div className='w-full bg-blue-400 h-[30%] flex items-end justify-end rounded-b-2xl'></div>
-        </div>
-      </div>
+      {data.map(({_id,customerName},index)=>{
+   return   <div className='w-full flex items-start justify-start'  onClick={()=>{handleOpen(_id)}} >
+            <div className='w-64 h-40 flex flex-col items-center justify-center shadow-2xl rounded-2xl'>
+              <div className='w-full h-[70%]'><img src={`${BillImg[Math.floor(Math.random()*BillImg.length)]}`}alt="" className='w-full h-full' /></div>
+              <div className='w-full bg-blue-400 h-[30%] flex items-center justify-center rounded-b-2xl'>{customerName}</div>
+            </div>
+          </div>
+      })}
     </div>
-    {billModel && <BillTemp handle={setBillModel} />}
+    {billModel && <BillTemp handle={setBillModel} data={view} />}
     </>
   )
 }
