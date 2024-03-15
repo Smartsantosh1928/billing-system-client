@@ -97,7 +97,7 @@ export function User() {
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({...details})
+      body: JSON.stringify({...details,role:"cashier"})
     }).then(res => res.json())
     .then(data => {
     setLoading(false)
@@ -143,7 +143,7 @@ export function User() {
         <Input label="Password" type={pass ? "password" : "text"} name="password" size="lg" onChange={handleChange} required />
         <div className="absolute mt-28 ml-60 md:mt-36 md:ml-72"><button className="absolute  mt-6 md:-mt-2 md:ml-4" onClick={toggle} >{pass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</button></div>
         {errors[2]!="" && <Typography variant="small" color="red">{errors[2]}</Typography>}
-        <div className="flex gap-3 ml-16">
+        {/* <div className="flex gap-3 ml-16">
           {console.log(role)}
           {
             role=='admin'? 
@@ -153,7 +153,7 @@ export function User() {
           } 
 
           
-        </div>
+        </div> */}
       </CardBody>
       <CardFooter className="pt-0 flex flex-col items-center justify-center">
         {loading ? <Loading type="spin" width="30px" color="blue"/> : <Button variant="gradient" fullWidth onClick={(e) => validated&&handleSubmit(e)}>
