@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
+import Swal from "sweetalert2";
 import {
   PencilIcon
 } from "@heroicons/react/24/outline";
-
+import api from '../../utils/Utils';
 
 
 export function Profile() {
+
+ const[data,setData]=useState([{}]);
+ 
+ 
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/user/allusers");
+      if (response.data) {
+        // console.log('====================================');
+        // console.log(response);
+        // console.log('====================================');
+        setData(response)
+        console.log(data);
+      } else {
+        throw new Error(response.data.msg);
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: error.message,
+        icon: 'error',
+      });
+    }
+  };
+
+  fetchData();
+}, []);
+
+
   return (
     <>
       <h1 className='text-xl mb-10 ml-3'>User Profile</h1>

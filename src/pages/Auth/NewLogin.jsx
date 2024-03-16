@@ -2,6 +2,7 @@ import React from 'react'
 import{UserCircleIcon,XMarkIcon} from "@heroicons/react/24/solid";
 import google from "../../../public/google.png"
 import per from "../../../public/person.svg"
+import { Link } from 'react-router-dom';
 import { Input,Button } from "@material-tailwind/react";
 import {
      Dialog
@@ -40,14 +41,14 @@ export function NewLogin({handleOpen}) {
                    </div>
                    <div className='flex  w-[70%] '>
                         <p className='text-sm cursor-pointer'>Don't have an account ?</p>
-                        <p className='text-sm text-orange-400 hover:text-blue-400 hover:cursor-pointer font-bold px-1' >Signup</p>
+                        <Link to="/auth/NewSignin" className='text-sm text-orange-400 hover:text-blue-400 hover:cursor-pointer font-bold px-1' >Signup</Link>
                    </div>
               </div>
               <div className='-m-8 pl-10'>
                    <XMarkIcon onClick={handleOpen} className='w-8 h-8 cursor-pointer hover:bg-gray-300 transform duration-300 hover:rounded-md p-1' />
               </div>
          </div>
-  </div>
+  </div> 
        
      </Dialog>
    </>
