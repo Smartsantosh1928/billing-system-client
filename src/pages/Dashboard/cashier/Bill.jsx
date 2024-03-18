@@ -503,4 +503,4 @@ const handleSubmit = async (e) => {
     </>
   )
 } 
-export default Bill
+ export default Bill
