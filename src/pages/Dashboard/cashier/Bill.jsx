@@ -27,69 +27,18 @@ import api from '../../../utils/Utils';
 
 const TABLE_HEAD = ["SNO","ProductName","Quantity", "UnitePrice", "TotalPrice", "Delete"];
  
-const TABLE_ROWS = [
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
-    name: "Spotify",
-    amount: "$2,500",
-    date: "Wed 3:00pm",
-    status: "paid",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
-    name: "Amazon",
-    amount: "$5,000",
-    date: "Wed 1:00pm",
-    status: "paid",
-    account: "master-card",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
-    name: "Pinterest",
-    amount: "$3,400",
-    date: "Mon 7:40pm",
-    status: "pending",
-    account: "master-card",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
-    name: "Google",
-    amount: "$1,000",
-    date: "Wed 5:00pm",
-    status: "paid",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
-    name: "netflix",
-    amount: "$14,000",
-    date: "Wed 3:30am",
-    status: "cancelled",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-];
 
   export function Bill() {
 
 
-    const [formData, setFormData] = useState({pname:''});
+  const [formData, setFormData] = useState({pname:''});
   const [details,setDetails] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null); 
   const [filteredProduct, setFilteredProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [price,setPrice]=useState(" ")
+  const [myData,setData]= useState([{}])
 
   const handleChange = (e) => {
     setFormData({
@@ -165,8 +114,7 @@ const filteredProducts = details.filter((product) =>
     setShowDropdown(!showDropdown); 
   }
   
-  
-  let data=[];
+  let data = []
   const addData=()=>{
     var name=document.querySelector("#pname");
     var quantity=document.querySelector("#quantity");
@@ -185,9 +133,10 @@ const filteredProducts = details.filter((product) =>
         tprice: quantityValue * priceValue,
       };
       data.push(newData);
+      setData(newData)
     }
-    console.log(data);
-    
+    console.log(data); 
+    console.log(myData); 
   }
 
 
@@ -271,7 +220,7 @@ const filteredProducts = details.filter((product) =>
                 },
                 index,
               ) => {
-                const isLast = index === TABLE_ROWS.length - 1;
+                const isLast = true;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
@@ -324,46 +273,6 @@ const filteredProducts = details.filter((product) =>
                         />
                       </div>
                     </td>
-                    {/* <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <div className="h-9 w-12 rounded-md border border-blue-gray-50 p-1">
-                          <Avatar
-                            src={
-                              account === "visa"
-                                ? "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
-                                : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/mastercard.png"
-                            }
-                            size="sm"
-                            alt={account}
-                            variant="square"
-                            className="h-full w-full object-contain p-1"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal capitalize"
-                          >
-                            {account.split("-").join(" ")} {accountNumber}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal opacity-70"
-                          >
-                            {expiry}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Edit User">
-                        <IconButton variant="text">
-                          <PencilIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                    </td> */}
                   </tr>
                 );
               },
@@ -377,15 +286,3 @@ const filteredProducts = details.filter((product) =>
   )
 } 
 export default Bill
-
-// export function Bill() {
-//   return (
-//     <>
-    
-    
-    
-//     </>
-//   )
-// }
-
-// export default Bill
