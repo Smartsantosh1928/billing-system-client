@@ -6,10 +6,10 @@ import {
     Dialog
   } from "@material-tailwind/react";
 
-export const BillTemp = ({handle}) => {
+export const BillTemp = ({handle,data}) => {
   return (
     <>
-    <Dialog open={open} size='xl'  className='bg-transparent shadow-none h-screen overflow-scroll ' handler={handle}>
+    <Dialog open={open} size='xl'  className='bg-transparent shadow-none overflow-scroll' handler={handle}>
         <div className='flex flex-col justify-center items-center pt-10 bg-white '>
             <div className='w-[850px] bg-blue-400 shadow-xl rounded-lg flex justify-around items-center'>
                 {/* <BellAlertIcon className='text-white h-10 w-10'/> */}
@@ -23,13 +23,13 @@ export const BillTemp = ({handle}) => {
             <div className='w-[850px] flex'>
                 <div className='w-[850px] pt-5 pl-5'>
                     <h1 className='text-sm font-bold tracking-wider'>BILL TO:</h1>
-                    <h1 className='text-md font-bold tracking-wider pt-4 text-gray-600'>Customer Name</h1>
-                    <h1 className='text-md font-bold tracking-wider text-gray-600'>City</h1>
-                    <h1 className='text-md font-bold tracking-wider text-gray-600'>Phone No</h1>   
+                    <h1 className='text-md font-bold tracking-wider pt-2 pl-10 text-gray-600'>{data.customerName}</h1>
+                    <h1 className='text-md font-bold tracking-wider pl-10 text-gray-600'>{data.city}</h1>
+                    <h1 className='text-md font-bold tracking-wider pl-10 text-gray-600'>{data.number}</h1>   
                 </div>
                 <div className='w-[100px] pt-5'>
-                    <h1 className='text-sm font-bold tracking-wider'>Bill No</h1>
-                    <h1 className='text-sm font-bold tracking-wider pt-5'>DATE</h1>
+                    <h1 className='text-sm font-bold tracking-wider'>Bill No: {data.billno}</h1>
+                    <h1 className='text-sm font-bold tracking-wider pt-5'>Date: {data.createdAt}</h1>
                 </div>
             </div>
             <div className='w-[810px] pt-5'>
@@ -48,81 +48,18 @@ export const BillTemp = ({handle}) => {
                 </tr>
                 </thead>
                 <tbody>
-                
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
-                <tr className="">
-                    <th className="text-sm px-4 py-2">1</th>
-                    <th className="text-sm px-4 py-2">Apple</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">100</th>
-                    <th className="text-sm px-4 py-2">10000</th>
-                </tr>
+                    {data.items.map(({productName,quantity,totalPrice,unitPrice},index)=>{
+                        return <tr className="">
+                            <th className="text-sm px-4 py-2">{index+1}</th>
+                            <th className="text-sm px-4 py-2">{productName}</th>
+                            <th className="text-sm px-4 py-2">{quantity}</th>
+                            <th className="text-sm px-4 py-2">{unitPrice}</th>
+                            <th className="text-sm px-4 py-2">{totalPrice}</th>
+                        </tr>
+                    })}
                 </tbody>
             </table>
             </div>
-
             <div className='w-[850px] pt-5 pb-2 flex'>
                 <div className='w-[460px] text-justify bg-blue-200 p-3 rounded-l-lg'>
                     <h1 className='text-sm font-bold'>NOTICE:</h1>
@@ -130,7 +67,7 @@ export const BillTemp = ({handle}) => {
                 </div>
                 <div className='w-[450px] bg-blue-400 p-5 rounded-r-lg'>
                     <h1 className='text-2xl text-white font-bold'>TOTAL</h1>
-                    <p className='text-xl tracking-wider'>$0000</p>
+                    <p className='text-xl text-gray-800 tracking-wider'>${data.totalAmount}</p>
                 </div>
             </div>
         </div>

@@ -193,6 +193,7 @@ export function Login() {
         localStorage.setItem("AccessToken",data.accessToken)
         localStorage.setItem("RefreshToken",data.refreshToken)
         localStorage.setItem("Role",data.role)
+        localStorage.setItem("Email",data.email)
         navigate("/dashboard/home")
       }
       else if(data.msg=="User not verified!"){
@@ -247,7 +248,7 @@ export function Login() {
         </Button>}
         <Typography variant="small" className="mt-6 flex justify-center">
           Don&apos;t have an account?
-          <Link to="/auth*/signup" className="text-base font-semibold hover:animate-pulse text-blue-500 ml-2" >Sign In</Link>
+          <Link to="/auth/signup" className="text-base font-semibold hover:animate-pulse text-blue-500 ml-2" >Sign In</Link>
         </Typography>
       </CardFooter>
     </Card>

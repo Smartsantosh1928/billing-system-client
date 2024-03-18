@@ -274,6 +274,7 @@ const handleSubmit = async (e) => {
               if (response.data.success) {
                 console.log(response);
                 console.log(response.data);
+                data=[]
                 const inputs = document.querySelectorAll('input')
                 inputs.forEach(input=> input.value='')
                 Swal.fire({
