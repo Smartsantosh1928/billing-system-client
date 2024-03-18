@@ -14,12 +14,12 @@ export function Profile() {
  useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await api.get("/user/allusers");
+      const response = await api.post("/user/allusers");
       if (response.data) {
-        // console.log('====================================');
-        // console.log(response);
-        // console.log('====================================');
-        setData(response)
+        console.log('====================================');
+        console.log(response.data.User);
+        console.log('====================================');
+        setData(response.data.User)
         console.log(data);
       } else {
         throw new Error(response.data.msg);

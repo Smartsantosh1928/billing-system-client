@@ -31,7 +31,7 @@ const NavBar = () => {
         </div>
     </div>
     {signin&&<NewSignin handleOpen={handleSignin} />}
-    {login&&<NewLogin handleOpen={handleLogin} />}
+    {login&&<NewLogin handleModelOpen={handleLogin} />}
     </>
   )
 }

@@ -12,10 +12,10 @@ import { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Otp from "./Otp";
-import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
-import Loading from "react-loading";
-import { getAccessToken } from "../../utils/Utils";
 import api from "../../utils/Utils";
+import Loading from "react-loading";
+import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
+import { getAccessToken } from "../../utils/Utils";
 
 export function Login() {
 

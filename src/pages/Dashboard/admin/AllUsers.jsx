@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import Swal from "sweetalert2";
+import api from "../../../utils/Utils"
 import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
@@ -45,21 +46,44 @@ export function AllUsers() {
   const [reload, setReload] = useState(false)
 
   useEffect(()=>{
-    fetch("http://localhost:3000/user/allusers",{
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-    }).then(res => res.json())
-    .then(data =>setData(data.User))
-    .then(console.log(dataa))
-    .catch(err => {
-      Swal.fire({
-        title: 'Error!',
-          text: err,
+    // fetch("http://localhost:3000/user/allusers",{
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    // }).then(res => res.json())
+    // .then(data =>setData(data.User))
+    // .then(console.log(dataa))
+    // .catch(err => {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //       text: err,
+    //       icon: 'error',
+    //   })
+    // })
+
+    const fetchData = async () => {
+      try {
+        const response = await api.post("/user/allusers");
+        if (response.data) {
+          console.log('====================================');
+          console.log(response.data.User);
+          console.log('====================================');
+          setData(response.data.User)
+        } else {
+          throw new Error(response.data.msg);
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: error.message,
           icon: 'error',
-      })
-    })},[reload]);
+        });
+      }
+    };
+  
+    fetchData();
+  },[reload]);
 
   const handleDelete =  (email) => {
     Swal.fire({
