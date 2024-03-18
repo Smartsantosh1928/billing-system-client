@@ -6,6 +6,7 @@ import { Demo } from "@/components"
 import Home from "././pages/Home/Home"
 import "./App.css"
 
+import BillTemp from "./pages/Dashboard/BillTemp"
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/demo" element={<Demo />} />
+        <Route path="/billl" element={<BillTemp />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="*" element={<Navigate to={"/auth/login"} />} />
       </Routes>
