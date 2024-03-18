@@ -194,6 +194,7 @@ export function Login() {
         localStorage.setItem("RefreshToken",data.refreshToken)
         localStorage.setItem("Role",data.role)
         localStorage.setItem("Email",data.email)
+        localStorage.setItem("StoreName",data.storename)
         navigate("/dashboard/home")
       }
       else if(data.msg=="User not verified!"){
