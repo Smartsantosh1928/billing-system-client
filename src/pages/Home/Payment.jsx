@@ -6,8 +6,10 @@ import {loadStripe} from '@stripe/stripe-js'
 
 const Payment = () => {
   // const [amount,setAmount] = useState(0)
+  const secretKey = "sk_test_51Ou3dNSFqeU6dZzwagG3ykU5aazi3IhVUzYftPX2k8tJr6SAK7BinZquURCDTZnCK7ys7TYXwWaUDCPam6OZ7IR8003qFPVdhl"
+  const publicKey = "pk_test_51Ou3dNSFqeU6dZzwbK2xnRaocx61V0Fsyvi8bq9sfb3ZcIQp0vtqBIGrqYUPIvjMzybmvFViWDvLNbkeYC04EZ8H00InBPMMeq"
   const  makePayment = async(rs)=>{
-    const stripe = await loadStripe('pk_test_51Ou3dNSFqeU6dZzwbK2xnRaocx61V0Fsyvi8bq9sfb3ZcIQp0vtqBIGrqYUPIvjMzybmvFViWDvLNbkeYC04EZ8H00InBPMMeq')
+    const stripe = await loadStripe(publicKey)
     const body ={
       price : rs
     }
@@ -15,7 +17,7 @@ const Payment = () => {
       method: "POST",
       headers:{
         "Content-Type": "application/json",
-        "Authorization" : "Bearer sk_test_51Ou3dNSFqeU6dZzwagG3ykU5aazi3IhVUzYftPX2k8tJr6SAK7BinZquURCDTZnCK7ys7TYXwWaUDCPam6OZ7IR8003qFPVdhl"
+        "Authorization" : `Bearer ${secretKey}`
       },
       body : JSON.stringify(body)
     })
