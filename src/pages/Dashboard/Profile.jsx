@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import api from '../../utils/Utils';
 
-
+let user=[];
 export function Profile() {
 
  const[data,setData]=useState([{}]);
@@ -36,11 +36,14 @@ export function Profile() {
   fetchData();
 }, []);
 
-
+  const email1=localStorage.getItem("Email");
+  user=data.filter(email=>email.email===email1)
+ console.log(user);
   return (
     <>
       <h1 className='text-xl mb-10 ml-3'>User Profile</h1>
     <div className='flex gap-20'>
+      {user.map((email,name,storename,role)=>{})}
       <div className='flex items-center h-[130px] w-[330px] bg-white shadow-xl rounded-xl '>
           <div className='h-20 w-20 flex justify-center items-center rounded-full  m-4 bg-orange-300'>
             <h1 className='text-2xl '>R</h1>

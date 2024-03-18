@@ -44,10 +44,15 @@ const Payment = () => {
         <p className='flex text-base py-2 hover:text-blue-400'><CheckCircleIcon className='w-10 text-blue-500 px-2'/>30-day money-back guarantee</p>
       </div>
       <div className='flex gap-5'>
-          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 hover:border-orange-500  gap-[23px] shadow-xl '>
+          <div className='w-80 h-72 flex flex-col items-center justify-center border-2 hover:border-orange-500 gap-3 shadow-xl '>
             <ComputerDesktopIcon className='w-10  text-orange-500'/>
-            <h1 className='text-xl'>Free Trail</h1>
-            <h1 className='text-3xl font-semibold'>FREE</h1>
+            <h1 className='text-xl'>3Days</h1>
+            <div className='flex'>
+            <span className='pt-[10px] font-medium'>Rs</span>
+            <h1 className='text-3xl pl-1 pr-1 font-semibold'>99.00</h1>
+            <span className='pt-[10px]'>/3day</span>
+
+            </div>
             <Button variant='gradient'>Purchase</Button>
             {/* <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button> */}
           </div>
