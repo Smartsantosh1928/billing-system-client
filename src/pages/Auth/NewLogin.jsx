@@ -2,8 +2,10 @@ import React, { useState , useEffect } from 'react'
 import{XMarkIcon} from "@heroicons/react/24/solid";
 import google from "../../../public/google.png"
 import per from "../../../public/person.svg"
-import { Link } from 'react-router-dom';
 import { Input,Button } from "@material-tailwind/react";
+import { Link,useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import Loading from "react-loading";
 import {
      Dialog,Typography
    } from "@material-tailwind/react";
@@ -15,6 +17,8 @@ export function NewLogin({handleModelOpen}) {
      const [ errors, setErrors ] = useState(["",""])
      const [ validated, setValidated] = useState(false)
      const [pass,showPass] = useState(false)
+     const [loading,setLoading] = useState(false)
+     const navigate = useNavigate()
 
 
      const toggle=()=>{
@@ -67,6 +71,83 @@ export function NewLogin({handleModelOpen}) {
      });
      }
 
+     const handleSubmit=(e)=>{
+          setLoading(!loading)
+          e.preventDefault();
+      
+      
+          // const fetchData = async ()=>{
+      
+          //   const res = await api.post("/auth/login",details)
+      
+          //   if(res.data.success)
+          //   {
+          //     setLoading(loading)
+          //     localStorage.setItem("AccessToken",res.data.accessToken)
+          //     localStorage.setItem("RefreshToken",res.data.refreshToken)
+          //     localStorage.setItem("Role",res.data.role)
+          //     navigate("/dashboard/home")
+          //   }
+          //   else if(res.data.msg=="User not verified!"){
+          //     setLoading(loading)
+          //     handleOpen()
+          //   }
+          //   else{
+          //     setLoading(loading)
+          //     Swal.fire({
+          //       title: 'Error!',
+          //       text: res.data.msg,
+          //       icon: 'error',
+          //     })
+          //     setdetails({email :"",password:""})
+          //   }
+          // }
+      
+          // fetchData()
+      
+          fetch("http://localhost:3000/auth/login",{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({...details})
+          }).then(res => res.json())
+          .then(data => {
+            if(data.success){
+              setLoading(loading)
+              localStorage.setItem("AccessToken",data.accessToken)
+              localStorage.setItem("RefreshToken",data.refreshToken)
+              localStorage.setItem("Role",data.role)
+              localStorage.setItem("Email",data.email)
+              localStorage.setItem("StoreName",data.storename)
+              navigate("/dashboard/home")
+            }
+            else if(data.msg=="User not verified!"){
+              setLoading(loading)
+              handleOpen()
+            }
+            else{
+              setLoading(loading)
+              handleModelOpen(!login)
+              Swal.fire({
+                title: 'Error!',
+                text: data.msg,
+                icon: 'error',
+              })
+              setDetails({email :"",password:""})
+            }
+          })
+          .catch(err => {
+            setLoading(loading)
+            handleModelOpen(!login)
+            Swal.fire({
+              title: 'Error!',
+                text: err,
+                icon: 'error',
+            })
+          })
+        }
+
   return (
      <>
      <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleModelOpen}>
@@ -85,7 +166,7 @@ export function NewLogin({handleModelOpen}) {
                          {errors[1]!="" && <Typography variant="small" color="red">{errors[1]}</Typography>}
                    </div>
                    <div >
-                        <Button>Login</Button>
+                        <Button onClick={handleSubmit}>Login</Button>
                    </div>
                    <div className='flex items-center pl-2 w-[70%] pt-3'>
                         <hr className='w-[40%] border-1 border-gray-500 ' />
