@@ -20,6 +20,7 @@ import Swal from "sweetalert2";
 
 
 const TABLE_HEAD = ["SNO","ProductName","Quantity", "UnitePrice", "TotalPrice", "Delete"];
+ 
 
 let data= [];
   export function Bill() {
@@ -32,6 +33,8 @@ let data= [];
   const [selectedProduct, setSelectedProduct] = useState(null); 
   const [filteredProduct, setFilteredProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  // const [price,setPrice]=useState(" ")
+  const [myData,setData]= useState([{}])
   const [refresh, setRefresh] = useState(false);
   const [ validated, setValidated] = useState(false)
   const [items,setItems] = useState([])
@@ -208,6 +211,20 @@ const filteredProducts = details.filter((product) =>
       var name = document.querySelector("#pname");
       var quantity = document.querySelector("#quantity");
       var price = document.querySelector("#price");
+
+    if (!isNaN(quantityValue) && !isNaN(priceValue)) {
+      const newData = {
+        pname: name.value,
+        quantity: isNaN(quantityValue)?1: quantityValue,
+        price: priceValue,
+        tprice: quantityValue * priceValue,
+      };
+      data.push(newData);
+      setData(newData)
+    }
+    console.log(data); 
+    console.log(myData); 
+  }
 
       const quantityValue = parseFloat(quantity.value);
       const priceValue = parseFloat(price.value);
@@ -502,5 +519,4 @@ const handleSubmit = async (e) => {
     </div>
     </>
   )
-} 
- export default Bill
+export default Bill
