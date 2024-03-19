@@ -46,10 +46,10 @@ export function Profile() {
       {user.map((email,name,storename,role)=>{})}
       <div className='flex items-center h-[130px] w-[330px] bg-white shadow-xl rounded-xl '>
           <div className='h-20 w-20 flex justify-center items-center rounded-full  m-4 bg-orange-300'>
-            <h1 className='text-2xl '>R</h1>
+            <h1 className='text-2xl '>Z</h1>
           </div>
           <div>
-            <h1 className='text-xl font-medium '>Roshan David R</h1>
+            <h1 className='text-xl font-medium '>Ziry Tech</h1>
             <p className='text-sm font-medium '>roshan123@gmail.com</p>
           </div>
       </div>
@@ -64,8 +64,8 @@ export function Profile() {
 
 
 
-  
-    <div className='pb-7 w-[400px] bg-white shadow-xl rounded-xl'>
+  <div className='flex'>
+    <div className='pb-7 mt-10 w-[400px] bg-white shadow-xl rounded-xl'>
       <div className='pt-10 flex justify-around m-5'>
         <h1 className='text-xl tracking-wider font-semibold -ml-7'>Account information</h1>
         <span className='flex text-md tracking-wider font-medium '><PencilIcon className='h-5 w-5 cursor-pointer'/></span>
@@ -74,12 +74,12 @@ export function Profile() {
       <div className='m-5 flex gap-10 pt-5'> 
         <div className=''>
           <h1 className='pb-2 font-semibold text-md'>Name</h1>
-          <h1 className='font-medium text-md'>Roshan David</h1>
+          <h1 className='font-medium text-md'>Test</h1>
           <hr className='w-full border-gray-400 border-2px'/> 
         </div>
         <div>
           <h1 className='pb-2 font-semibold text-md'>Email</h1>
-          <h1 className='font-medium text-md'>roshan123@gmail.com</h1>
+          <h1 className='font-medium text-md'>roshandavid1106@gmail.com</h1>
           <hr className='w-full border-gray-400 border-2px'/> 
         </div>
       </div>
@@ -94,15 +94,15 @@ export function Profile() {
     </div>
 
 
-    <div className='mt-10 w-[400px] h-[400px] bg-white shadow-2xl rounded-xl '>
+    <div className='mt-10 ml-10 w-[400px] h-auto bg-white shadow-2xl rounded-xl '>
         <h1 className='text-xl tracking-wider font-semibold text-center pt-3'>Cashier Info</h1>
         <div className='w-[350px] pl-12 pt-5'>
           <div>
-            <h1 className='text-md font-semibold tracking-wider pb-1'>Roshan</h1>
+            <h1 className='text-md font-semibold tracking-wider pb-1'>Rishi</h1>
             <hr className='border border-gray-400'/>
           </div>
           <div className='pt-6'>
-            <h1 className='text-md font-semibold tracking-wider pb-1'>Roshan</h1>
+            <h1 className='text-md font-semibold tracking-wider pb-1'>Nithi</h1>
             <hr className='border border-gray-400'/>
           </div>
           <div className='pt-6'>
@@ -110,6 +110,7 @@ export function Profile() {
             <hr className='border border-gray-400'/>
           </div>
         </div>
+    </div>
     </div>
 
     </>

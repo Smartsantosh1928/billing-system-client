@@ -5,11 +5,9 @@ import {loadStripe} from '@stripe/stripe-js'
 
 
 const Payment = () => {
-  // const [amount,setAmount] = useState(0)
-  const secretKey = "sk_test_51Ou3dNSFqeU6dZzwagG3ykU5aazi3IhVUzYftPX2k8tJr6SAK7BinZquURCDTZnCK7ys7TYXwWaUDCPam6OZ7IR8003qFPVdhl"
-  const publicKey = "pk_test_51Ou3dNSFqeU6dZzwbK2xnRaocx61V0Fsyvi8bq9sfb3ZcIQp0vtqBIGrqYUPIvjMzybmvFViWDvLNbkeYC04EZ8H00InBPMMeq"
+  const [sessionId,setSessionId] = useState("")
+  const secretKey = "sk_test_51Mdm6DSJrdK8idgwzgtWlxXd8HKbSPWnywr7jWhxcEPX7H8xqBADIPSx2Vh93xqtVMvmWWcdDEIPwpWDuMTLJvcZ00qTrhBZPY"
   const  makePayment = async(rs)=>{
-    const stripe = await loadStripe(publicKey)
     const body ={
       price : rs
     }
@@ -23,15 +21,8 @@ const Payment = () => {
     })
 
     const session = await res.json()
-
-    const req = stripe.redirectToCheckout({
-      sessionId:session.id
-    })
-    if(req.error)
-    {
-      console.log(req.error);
-    }
-
+    setSessionId(session.id)
+    window.location.href = session.paymentLink
   }
 
   return (
@@ -49,11 +40,11 @@ const Payment = () => {
             <h1 className='text-xl'>3Days</h1>
             <div className='flex'>
             <span className='pt-[10px] font-medium'>Rs</span>
-            <h1 className='text-3xl pl-1 pr-1 font-semibold'>99.00</h1>
+            <h1 className='text-3xl pl-1 pr-1 font-semibold'>19.00</h1>
             <span className='pt-[10px]'>/3day</span>
 
             </div>
-            <Button variant='gradient'>Purchase</Button>
+            <Button variant='gradient' onClick={()=>makePayment(19)}>Purchase</Button>
             {/* <button className='h-10 w-44 bg-blue-300 rounded-2xl text-white hover:text-black text-lg hover:border-2 transform duration-300 hover:bg-transparent hover:border-blue-300 tracking-wider'>Purchase</button> */}
           </div>
           <div className='w-80 h-72 flex flex-col items-center justify-center border-2  hover:border-orange-500  gap-6 shadow-xl relative overflow-hidden'>

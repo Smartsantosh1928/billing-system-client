@@ -26,12 +26,12 @@ const NavBar = () => {
         <div className='flex w-full justify-end items-center gap-2  pr-5'> 
             {/* <button onClick={handleSignin} className={button}>Signin</button>
             <button className={button}>Signup</button> */}
-            <Button variant="outlined" onClick={handleSignin} >Signup</Button>
+            {/* <Button variant="outlined" onClick={handleSignin} >Signup</Button> */}
             <Button variant="gradient" onClick={handleLogin} className={""}>Signin</Button>
         </div>
     </div>
-    {signin&&<NewSignin handleOpen={handleSignin} />}
-    {login&&<NewLogin handleModelOpen={handleLogin} />}
+    {signin&&<NewSignin handleOpen={setLogin} />}
+    {login&&<NewLogin handleModelOpen={setLogin} />}
     </>
   )
 }

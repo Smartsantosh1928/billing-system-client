@@ -26,12 +26,12 @@ const Footer = () => {
  
       <div className='pb-5 '>
           <h1 className='text-sm  tracking-wider font-semibold text-white'>EMAI ID</h1>
-          <p className='text-md font-medium text-white tracking-wider cursor-pointer'>rockroshan1114@gmail.com</p>
+          <p className='text-md font-medium text-white tracking-wider cursor-pointer'>zirytech@gmail.com</p>
       </div>
 
       <div className='pb-5  '>
           <h1 className='text-sm  tracking-wider font-semibold text-white'>SUPPORT</h1>
-          <p className='text-lg font-medium text-white tracking-wider cursor-pointer'>+91 1234567890</p>
+          <p className='text-lg font-medium text-white tracking-wider cursor-pointer'>+91 9600735230</p>
       </div>
    
       <div className='mb-5'>
@@ -69,7 +69,7 @@ const Footer = () => {
     <div className='w-[25%]  '>
       <h1 className='text-base font-medium border-b-[1px] pb-2 tracking-wider m-12 text-white'>CONTACT</h1>
       <div className=''>
-        <h1 className='text-base font-medium -mt-7 tracking-wider m-12 text-orange-400'>Email : roshan1114@gmail.com</h1>
+        <h1 className='text-base font-medium -mt-7 tracking-wider m-12 text-orange-400'>Email : zirytech@gmail.com</h1>
         <h1 className='text-base font-medium -mt-10 tracking-wider m-12 text-orange-400'>Phno : 7494734390</h1>
       </div>
     </div>
