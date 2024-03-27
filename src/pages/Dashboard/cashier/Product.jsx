@@ -89,6 +89,7 @@ export function Product() {
                 console.log(response.data);
                 const inputs = document.querySelectorAll('input')
                 inputs.forEach(input=> input.value='')
+                setActive(!active)
                 Swal.fire({
                   title: 'Success...!',
                   text: response.data.msg,
@@ -251,6 +252,7 @@ return (
           <div className="flex flex-col mt-8 gap-4">
             <Switch
             name='isActive'
+            checked={active}
             onChange={handleChange}
               label={
                 <Typography

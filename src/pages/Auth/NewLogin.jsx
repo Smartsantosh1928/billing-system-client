@@ -70,6 +70,9 @@ export function NewLogin({handleModelOpen}) {
           return newErrors;
      });
      }
+     const xmark = ()=>{
+      handleModelOpen(false)
+     }
 
      const handleSubmit=(e)=>{
           setLoading(!loading)
@@ -182,7 +185,7 @@ export function NewLogin({handleModelOpen}) {
                    </div>
               </div>
               <div className='-m-8 pl-10'>
-                   <XMarkIcon onClick={handleModelOpen} className='w-8 h-8 cursor-pointer hover:bg-gray-300 transform duration-300 hover:rounded-md p-1' />
+                   <XMarkIcon onClick={xmark} className='w-8 h-8 cursor-pointer hover:bg-gray-300 transform duration-300 hover:rounded-md p-1' />
               </div>
          </div>
   </div>  

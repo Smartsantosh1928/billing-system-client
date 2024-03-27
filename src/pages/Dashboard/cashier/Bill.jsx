@@ -255,7 +255,7 @@ const filteredProducts = details.filter((product) =>
     //     icon: 'error',
     //   });
     // }
-};
+
 
 const handleDelete = (index)=>{
   data.splice(index,1)
@@ -319,8 +319,8 @@ const handleSubmit = async (e) => {
         icon: 'error',
       });
     }
-};
 
+  };
   return (
     <>
     <div>
@@ -519,4 +519,5 @@ const handleSubmit = async (e) => {
     </div>
     </>
   )
+};
 export default Bill

@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react'
+import{XMarkIcon} from "@heroicons/react/24/solid";
 import Swal from "sweetalert2";
 import {
   Input,
@@ -23,7 +24,9 @@ export function UpdateProducts({setReload,handleOpen,edit}) {
   // })
   // console.log(details); 
   // }
-
+ const xmark = ()=>{
+  handleOpen(false)
+ }
   const handleChange =(e)=>{
     const {name,value}=e.target
     if(name=="isActive"){
@@ -74,7 +77,10 @@ export function UpdateProducts({setReload,handleOpen,edit}) {
 return (
   <>
     <Dialog open={open} size='xl'  className='bg-transparent shadow-none' handler={handleOpen}>        
-      <div className='w-[100%]  h-screen flex flex-col items-center justify-center gap-5'>
+      <div className='w-[100%] h-screen flex flex-col items-center justify-center gap-5'>
+        <div className='pl-[700px] '>
+                   <XMarkIcon onClick={xmark} className='w-8 h-8 text-white cursor-pointer hover:bg-blue-300 transform duration-300 hover:rounded-md p-1' />
+              </div>
       <Typography variant="h3" color="white" className="text-blue-300">
               Update Products
         </Typography>
